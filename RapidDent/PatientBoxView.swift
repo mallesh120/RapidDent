@@ -34,7 +34,7 @@ struct PatientBoxView: View {
                 
                 Image(systemName: "heart.text.square.fill")
                     .font(.system(size: 40))
-                    .foregroundColor(Color(red: 0.0, green: 0.4, blue: 0.8))
+                    .foregroundColor(.rdBrand)
             }
             .padding(16)
             .background(Color(uiColor: .systemGray6))

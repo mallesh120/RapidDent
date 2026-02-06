@@ -14,17 +14,6 @@ struct FeedbackView: View {
     
     var body: some View {
         ZStack {
-            // Background gradient
-            LinearGradient(
-                gradient: Gradient(colors: [
-                    Color(red: 0.95, green: 0.97, blue: 0.99),
-                    Color(red: 0.90, green: 0.94, blue: 0.98)
-                ]),
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
-            
             ScrollView {
                 VStack(spacing: 32) {
                     // Large Icon and Result text
@@ -90,15 +79,16 @@ struct FeedbackView: View {
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 16)
-                            .background(Color(red: 0.0, green: 0.4, blue: 0.8))
+                            .background(Color.rdBrand)
                             .cornerRadius(12)
-                            .shadow(color: Color(red: 0.0, green: 0.4, blue: 0.8).opacity(0.3), radius: 8, x: 0, y: 4)
+                            .shadow(color: Color.rdBrand.opacity(0.3), radius: 8, x: 0, y: 4)
                     }
                     .padding(.horizontal, 32)
                     .padding(.bottom, 40)
                 }
             }
         }
+        .appBackground()
     }
 }
 

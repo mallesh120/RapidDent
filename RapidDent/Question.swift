@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseFirestore
+import os
 
 struct QuestionOption {
     let id: String
@@ -22,9 +23,10 @@ struct Question: Identifiable {
     let explanation: String
     let scenarioId: String?
     let options: [QuestionOption]
+    let imageUrl: String?  // Optional image URL for questions with visual content
     
     // Direct initializer for testing/previews
-    init(id: String, questionText: String, type: String, correctOption: String, explanation: String, scenarioId: String? = nil, options: [QuestionOption] = []) {
+    init(id: String, questionText: String, type: String, correctOption: String, explanation: String, scenarioId: String? = nil, options: [QuestionOption] = [], imageUrl: String? = nil) {
         self.id = id
         self.questionText = questionText
         self.type = type
@@ -32,6 +34,7 @@ struct Question: Identifiable {
         self.explanation = explanation
         self.scenarioId = scenarioId
         self.options = options
+        self.imageUrl = imageUrl
     }
     
     // Custom initializer to parse Firestore document
@@ -42,12 +45,15 @@ struct Question: Identifiable {
         guard let questionText = data["question_text"] as? String,
               let type = data["type"] as? String,
               let explanation = data["explanation"] as? String else {
-            print("❌ Missing required fields in document: \(document.documentID)")
+            AppLogger.data.warning("Missing required fields in document: \(document.documentID)")
             return nil
         }
         
         // Parse scenario_id (optional for non-scenario questions)
         self.scenarioId = data["scenario_id"] as? String
+        
+        // Parse image_url (optional)
+        self.imageUrl = data["image_url"] as? String
         
         // Parse options array
         var parsedOptions: [QuestionOption] = []
@@ -58,38 +64,23 @@ struct Question: Identifiable {
                    let isCorrect = optionData["is_correct"] as? Bool {
                     parsedOptions.append(QuestionOption(id: id, text: text, isCorrect: isCorrect))
                 } else {
-                    print("⚠️ Skipping malformed option in document \(document.documentID): \(optionData)")
+                    AppLogger.data.debug("Skipping malformed option in \(document.documentID)")
                 }
             }
-        } else {
-            print("⚠️ No options array found in document: \(document.documentID)")
         }
         self.options = parsedOptions
         
         // Parse correct_option from either direct field or options array
         var correctOption: String?
         
-        // First, try to get correct_option directly
         if let directOption = data["correct_option"] as? String {
             correctOption = directOption
-            print("✅ Found correct_option directly: \(directOption) in \(document.documentID)")
-        } 
-        // If not found, find from options array
-        else if !parsedOptions.isEmpty {
+        } else if !parsedOptions.isEmpty {
             correctOption = parsedOptions.first(where: { $0.isCorrect })?.id
-            if let option = correctOption {
-                print("✅ Found correct_option from options array: \(option) in \(document.documentID)")
-            } else {
-                print("⚠️ Options exist but none marked as correct in \(document.documentID)")
-                print("   Options data: \(data["options"] ?? "nil")")
-            }
-        } else {
-            print("⚠️ No correct_option field and no valid options array in \(document.documentID)")
-            print("   Available fields: \(data.keys.joined(separator: ", "))")
         }
         
         guard let finalCorrectOption = correctOption else {
-            print("❌ Could not determine correct_option for document: \(document.documentID)")
+            AppLogger.data.error("Could not determine correct_option for: \(document.documentID)")
             return nil
         }
         

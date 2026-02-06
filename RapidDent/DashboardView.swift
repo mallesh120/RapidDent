@@ -8,32 +8,21 @@
 import SwiftUI
 
 struct DashboardView: View {
-    @StateObject private var progressManager = ProgressManager.shared
+    @ObservedObject private var progressManager = ProgressManager.shared
     @State private var showResetConfirmation = false
     
     var body: some View {
         ZStack {
-            // Background gradient
-            LinearGradient(
-                gradient: Gradient(colors: [
-                    Color(red: 0.95, green: 0.97, blue: 0.99),
-                    Color(red: 0.90, green: 0.94, blue: 0.98)
-                ]),
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
-            
             VStack(spacing: 32) {
                 // Header
                 VStack(spacing: 12) {
                     Image(systemName: "chart.bar.fill")
                         .font(.system(size: 60))
-                        .foregroundColor(Color(red: 0.0, green: 0.4, blue: 0.8))
+                        .foregroundColor(.rdBrand)
                     
                     Text("Progress Dashboard")
                         .font(.system(size: 32, weight: .bold))
-                        .foregroundColor(Color(red: 0.0, green: 0.4, blue: 0.8))
+                        .foregroundColor(.rdBrand)
                     
                     Text("Track your study progress")
                         .font(.system(size: 16, weight: .medium))
@@ -49,7 +38,7 @@ struct DashboardView: View {
                         title: "Questions Done",
                         value: "\(progressManager.questionsCompleted)",
                         color: .green,
-                        accentColor: Color(red: 0.0, green: 0.7, blue: 0.3)
+                        accentColor: .rdSuccess
                     )
                     
                     // Questions Needing Review (wrapped in NavigationLink)
@@ -59,7 +48,7 @@ struct DashboardView: View {
                             title: "Needs Review",
                             value: "\(progressManager.questionsNeedingReview)",
                             color: .orange,
-                            accentColor: Color(red: 1.0, green: 0.6, blue: 0.0)
+                            accentColor: .rdWarning
                         )
                     }
                     .disabled(progressManager.wrongIDs.isEmpty)
@@ -73,7 +62,7 @@ struct DashboardView: View {
                                 .font(.system(size: 40))
                                 .foregroundColor(.white)
                                 .frame(width: 70, height: 70)
-                                .background(Color(red: 0.5, green: 0.2, blue: 0.8))
+                                .background(Color.rdExam)
                                 .cornerRadius(16)
                             
                             // Content
@@ -93,12 +82,12 @@ struct DashboardView: View {
                             // Arrow
                             Image(systemName: "chevron.right")
                                 .font(.system(size: 20, weight: .semibold))
-                                .foregroundColor(Color(red: 0.5, green: 0.2, blue: 0.8))
+                                .foregroundColor(.rdExam)
                         }
                         .padding(20)
                         .background(Color.white)
                         .cornerRadius(16)
-                        .shadow(color: Color(red: 0.5, green: 0.2, blue: 0.8).opacity(0.2), radius: 8, x: 0, y: 4)
+                        .shadow(color: Color.rdExam.opacity(0.2), radius: 8, x: 0, y: 4)
                     }
                 }
                 .padding(.horizontal, 32)
@@ -127,6 +116,7 @@ struct DashboardView: View {
                 .padding(.bottom, 40)
             }
         }
+        .appBackground()
         .navigationBarTitle("Dashboard", displayMode: .inline)
         .alert("Reset Progress?", isPresented: $showResetConfirmation) {
             Button("Cancel", role: .cancel) { }
@@ -182,7 +172,7 @@ struct StatCard: View {
 
 struct DashboardView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             DashboardView()
         }
     }

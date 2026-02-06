@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseCore
+import os
 
 // AppDelegate for Firebase configuration
 class AppDelegate: NSObject, UIApplicationDelegate {
@@ -14,7 +15,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         // Configure Firebase
         FirebaseApp.configure()
-        print("✅ Firebase configured successfully")
+        AppLogger.general.info("Firebase configured")
         return true
     }
 }

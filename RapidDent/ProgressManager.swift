@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import os
 
 class ProgressManager: ObservableObject {
     static let shared = ProgressManager()
@@ -29,12 +30,12 @@ class ProgressManager: ObservableObject {
     func load() {
         if let completedData = UserDefaults.standard.array(forKey: completedKey) as? [String] {
             completedIDs = Set(completedData)
-            print("✅ Loaded \(completedIDs.count) completed questions")
+            AppLogger.progress.info("Loaded \(self.completedIDs.count) completed questions")
         }
         
         if let wrongData = UserDefaults.standard.array(forKey: wrongKey) as? [String] {
             wrongIDs = Set(wrongData)
-            print("✅ Loaded \(wrongIDs.count) questions needing review")
+            AppLogger.progress.info("Loaded \(self.wrongIDs.count) questions needing review")
         }
     }
     
@@ -42,35 +43,28 @@ class ProgressManager: ObservableObject {
     func save() {
         UserDefaults.standard.set(Array(completedIDs), forKey: completedKey)
         UserDefaults.standard.set(Array(wrongIDs), forKey: wrongKey)
-        print("💾 Progress saved: \(completedIDs.count) completed, \(wrongIDs.count) need review")
+        AppLogger.progress.debug("Saved: \(self.completedIDs.count) completed, \(self.wrongIDs.count) review")
     }
     
     /// Mark a question as answered
-    /// - Parameters:
-    ///   - id: Question ID
-    ///   - correct: Whether the answer was correct
     func markAsAnswered(id: String, correct: Bool) {
-        // Add to completed set
         completedIDs.insert(id)
         
-        // If wrong, add to wrong IDs; if correct, remove from wrong IDs (in case they got it right this time)
         if correct {
             wrongIDs.remove(id)
-            print("✅ Question \(id) answered correctly")
         } else {
             wrongIDs.insert(id)
-            print("❌ Question \(id) needs review")
         }
         
         save()
     }
     
-    /// Reset all progress (for testing or starting fresh)
+    /// Reset all progress
     func resetProgress() {
         completedIDs.removeAll()
         wrongIDs.removeAll()
         save()
-        print("🔄 Progress reset")
+        AppLogger.progress.info("Progress reset")
     }
     
     // MARK: - Computed Properties

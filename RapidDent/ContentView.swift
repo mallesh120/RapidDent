@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import os
 #if canImport(FirebaseFirestore)
 import FirebaseFirestore
 #endif
@@ -13,7 +14,7 @@ import FirebaseFirestore
 struct ContentView: View {
     var reviewMode: Bool = false
     
-    @StateObject private var progressManager = ProgressManager.shared
+    @ObservedObject private var progressManager = ProgressManager.shared
     @State private var questions: [Question] = []
     @State private var currentIndex = 0
     @State private var score = 0
@@ -29,17 +30,6 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            // Background gradient
-            LinearGradient(
-                gradient: Gradient(colors: [
-                    Color(red: 0.95, green: 0.97, blue: 0.99),
-                    Color(red: 0.90, green: 0.94, blue: 0.98)
-                ]),
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
-            
             VStack(spacing: 0) {
                 // Header
                 headerView
@@ -56,6 +46,7 @@ struct ContentView: View {
                 }
             }
         }
+        .appBackground()
         .onAppear {
             fetchQuestions()
         }
@@ -74,7 +65,7 @@ struct ContentView: View {
         VStack(spacing: 8) {
             Text("RapidDent 🦷")
                 .font(.system(size: 28, weight: .bold))
-                .foregroundColor(Color(red: 0.0, green: 0.4, blue: 0.8))
+                .foregroundColor(.rdBrand)
             
             HStack(spacing: 20) {
                 // Score
@@ -116,7 +107,7 @@ struct ContentView: View {
         VStack(spacing: 20) {
             ProgressView()
                 .scaleEffect(1.5)
-                .tint(Color(red: 0.0, green: 0.4, blue: 0.8))
+                .tint(.rdBrand)
             
             Text("Loading Questions...")
                 .font(.system(size: 18, weight: .medium))
@@ -148,7 +139,7 @@ struct ContentView: View {
                     .foregroundColor(.white)
                     .padding(.horizontal, 32)
                     .padding(.vertical, 12)
-                    .background(Color(red: 0.0, green: 0.4, blue: 0.8))
+                    .background(Color.rdBrand)
                     .cornerRadius(25)
             }
         }
@@ -165,7 +156,7 @@ struct ContentView: View {
             
             Text("Quiz Complete! 🎉")
                 .font(.system(size: 32, weight: .bold))
-                .foregroundColor(Color(red: 0.0, green: 0.4, blue: 0.8))
+                .foregroundColor(.rdBrand)
             
             VStack(spacing: 12) {
                 Text("Final Score")
@@ -174,7 +165,7 @@ struct ContentView: View {
                 
                 Text("\(score) / \(questions.count)")
                     .font(.system(size: 48, weight: .bold))
-                    .foregroundColor(Color(red: 0.0, green: 0.4, blue: 0.8))
+                    .foregroundColor(.rdBrand)
                 
                 let percentage = questions.isEmpty ? 0 : Int((Double(score) / Double(questions.count)) * 100)
                 Text("\(percentage)% Correct")
@@ -192,9 +183,9 @@ struct ContentView: View {
                     .foregroundColor(.white)
                     .padding(.horizontal, 40)
                     .padding(.vertical, 16)
-                    .background(Color(red: 0.0, green: 0.4, blue: 0.8))
+                    .background(Color.rdBrand)
                     .cornerRadius(30)
-                    .shadow(color: Color(red: 0.0, green: 0.4, blue: 0.8).opacity(0.3), radius: 8, x: 0, y: 4)
+                    .shadow(color: Color.rdBrand.opacity(0.3), radius: 8, x: 0, y: 4)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -369,13 +360,13 @@ struct ContentView: View {
                 
                 if let error = error {
                     errorMessage = "Failed to load questions: \(error.localizedDescription)"
-                    print("❌ Error fetching questions: \(error)")
+                    AppLogger.data.error("Error fetching questions: \(error.localizedDescription)")
                     return
                 }
                 
                 guard let documents = snapshot?.documents else {
                     errorMessage = "No questions found in database"
-                    print("❌ No documents found")
+                    AppLogger.data.warning("No documents found")
                     return
                 }
                 
@@ -383,7 +374,7 @@ struct ContentView: View {
                 
                 if fetchedQuestions.isEmpty {
                     errorMessage = "No RAPID_FIRE questions available"
-                    print("⚠️ No RAPID_FIRE questions found")
+                    AppLogger.data.warning("No RAPID_FIRE questions found")
                 } else {
                     if reviewMode {
                         // Review Mode: Show ONLY questions that were answered incorrectly
@@ -391,10 +382,10 @@ struct ContentView: View {
                         
                         if reviewQuestions.isEmpty {
                             errorMessage = "No questions need review. Great job! 🎉"
-                            print("✅ No questions to review")
+                            AppLogger.data.info("No questions to review")
                         } else {
                             questions = reviewQuestions.shuffled()
-                            print("📝 Review Mode: Loaded \(reviewQuestions.count) questions needing review")
+                            AppLogger.data.info("Review Mode: Loaded \(reviewQuestions.count) questions")
                         }
                     } else {
                         // Normal Mode: Filter out already completed questions
@@ -403,10 +394,10 @@ struct ContentView: View {
                         if uncompletedQuestions.isEmpty {
                             // All questions completed, reset to show all questions
                             questions = fetchedQuestions.shuffled()
-                            print("✅ All questions completed! Showing all \(fetchedQuestions.count) questions")
+                            AppLogger.data.info("All completed! Showing all \(fetchedQuestions.count) questions")
                         } else {
                             questions = uncompletedQuestions.shuffled()
-                            print("✅ Loaded \(uncompletedQuestions.count) uncompleted questions (\(fetchedQuestions.count) total)")
+                            AppLogger.data.info("Loaded \(uncompletedQuestions.count) uncompleted of \(fetchedQuestions.count) total")
                         }
                     }
                 }
@@ -415,7 +406,7 @@ struct ContentView: View {
         // Fallback when FirebaseFirestore isn't available
         isLoading = false
         errorMessage = "Firebase is not configured. Please ensure Firebase is properly set up."
-        print("⚠️ Firebase not available - cannot fetch questions")
+        AppLogger.data.warning("Firebase not available")
 #endif
     }
     
@@ -425,28 +416,25 @@ struct ContentView: View {
         let isCorrect: Bool
         
         if userAnsweredTrue {
-            // User swiped right (answered True)
             isCorrect = question.correctOption == "A"
         } else {
-            // User swiped left (answered False)
             isCorrect = question.correctOption == "B"
         }
         
         if isCorrect {
             score += 1
-            print("✅ Correct! Score: \(score)")
+            HapticManager.notification(.success)
+            AppLogger.game.debug("Correct! Score: \(score)")
             
             // If in review mode and answered correctly, remove from wrong IDs
             if reviewMode && progressManager.wrongIDs.contains(question.id) {
                 progressManager.wrongIDs.remove(question.id)
                 progressManager.save()
-                print("🎯 Removed \(question.id) from review list")
             }
         } else {
-            print("❌ Wrong! Correct answer was: \(question.isCorrectAnswerTrue ? "True" : "False")")
+            HapticManager.notification(.error)
+            AppLogger.game.debug("Wrong! Answer was: \(question.isCorrectAnswerTrue ? "True" : "False")")
         }
-        
-        print("Explanation: \(question.explanation)")
         
         // Mark question as answered in progress manager (only in normal mode)
         if !reviewMode {

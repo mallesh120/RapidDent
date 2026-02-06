@@ -7,77 +7,147 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00FB00012F174FFF00000001 /* FirebaseAI in Frameworks */ = {isa = PBXBuildFile; productRef = 00FB00002F174FFF00000001 /* FirebaseAI */; };
-		00FB00032F174FFF00000002 /* FirebaseAILogic in Frameworks */ = {isa = PBXBuildFile; productRef = 00FB00022F174FFF00000002 /* FirebaseAILogic */; };
-		00FB00052F174FFF00000003 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 00FB00042F174FFF00000003 /* FirebaseAnalytics */; };
-		00FB00072F174FFF00000004 /* FirebaseAnalyticsCore in Frameworks */ = {isa = PBXBuildFile; productRef = 00FB00062F174FFF00000004 /* FirebaseAnalyticsCore */; };
-		00FB00092F174FFF00000005 /* FirebaseAnalyticsIdentitySupport in Frameworks */ = {isa = PBXBuildFile; productRef = 00FB00082F174FFF00000005 /* FirebaseAnalyticsIdentitySupport */; };
-		00FB000B2F174FFF00000006 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 00FB000A2F174FFF00000006 /* FirebaseFirestore */; };
+		BB000001BBBB000100000001 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB000001BBBB000000000001 /* GoogleService-Info.plist */; };
+		BB000001BBBB000100000002 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB000001BBBB000000000001 /* GoogleService-Info.plist */; };
+		BB000001BBBB000100000003 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB000001BBBB000000000001 /* GoogleService-Info.plist */; };
+		00A917E12F160F5E00440BEA /* DentalExamPrepApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D02F160F5E00440BEA /* DentalExamPrepApp.swift */; };
+		00A917E22F160F5E00440BEA /* ExamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D12F160F5E00440BEA /* ExamView.swift */; };
+		00A917E32F160F5E00440BEA /* ProgressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D62F160F5E00440BEA /* ProgressManager.swift */; };
+		00A917E42F160F5E00440BEA /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D22F160F5E00440BEA /* FeedbackView.swift */; };
+		00A917E52F160F5E00440BEA /* ScoreReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917DA2F160F5E00440BEA /* ScoreReportView.swift */; };
+		00A917E62F160F5E00440BEA /* DentalExamPrepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917DC2F160F5E00440BEA /* DentalExamPrepTests.swift */; };
+		00A917E72F160F5E00440BEA /* Scenario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D82F160F5E00440BEA /* Scenario.swift */; };
+		00A917E82F160F5E00440BEA /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D42F160F5E00440BEA /* MainMenuView.swift */; };
+		00A917E92F160F5E00440BEA /* DentalExamPrepUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917DF2F160F5E00440BEA /* DentalExamPrepUITestsLaunchTests.swift */; };
+		00A917EA2F160F5E00440BEA /* PatientBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D52F160F5E00440BEA /* PatientBoxView.swift */; };
+		00A917EB2F160F5E00440BEA /* DentalExamPrepUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917DE2F160F5E00440BEA /* DentalExamPrepUITests.swift */; };
+		00A917EC2F160F5E00440BEA /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917CF2F160F5E00440BEA /* DashboardView.swift */; };
+		00A917ED2F160F5E00440BEA /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917CD2F160F5E00440BEA /* CardView.swift */; };
+		00A917EE2F160F5E00440BEA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917CE2F160F5E00440BEA /* ContentView.swift */; };
+		00A917EF2F160F5E00440BEA /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D72F160F5E00440BEA /* Question.swift */; };
+		00A917F02F160F5E00440BEA /* ScenarioRunnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D92F160F5E00440BEA /* ScenarioRunnerView.swift */; };
+		00A917F12F160F5E00440BEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00A917CC2F160F5E00440BEA /* Assets.xcassets */; };
+		00A917F32F160F5E00440BEA /* DentalExamPrepApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D02F160F5E00440BEA /* DentalExamPrepApp.swift */; };
+		00A917F42F160F5E00440BEA /* ExamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D12F160F5E00440BEA /* ExamView.swift */; };
+		00A917F52F160F5E00440BEA /* ProgressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D62F160F5E00440BEA /* ProgressManager.swift */; };
+		00A917F62F160F5E00440BEA /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D22F160F5E00440BEA /* FeedbackView.swift */; };
+		00A917F72F160F5E00440BEA /* ScoreReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917DA2F160F5E00440BEA /* ScoreReportView.swift */; };
+		00A917F82F160F5E00440BEA /* DentalExamPrepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917DC2F160F5E00440BEA /* DentalExamPrepTests.swift */; };
+		00A917F92F160F5E00440BEA /* Scenario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D82F160F5E00440BEA /* Scenario.swift */; };
+		00A917FA2F160F5E00440BEA /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D42F160F5E00440BEA /* MainMenuView.swift */; };
+		00A917FB2F160F5E00440BEA /* DentalExamPrepUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917DF2F160F5E00440BEA /* DentalExamPrepUITestsLaunchTests.swift */; };
+		00A917FC2F160F5E00440BEA /* PatientBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D52F160F5E00440BEA /* PatientBoxView.swift */; };
+		00A917FD2F160F5E00440BEA /* DentalExamPrepUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917DE2F160F5E00440BEA /* DentalExamPrepUITests.swift */; };
+		00A917FE2F160F5E00440BEA /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917CF2F160F5E00440BEA /* DashboardView.swift */; };
+		00A917FF2F160F5E00440BEA /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917CD2F160F5E00440BEA /* CardView.swift */; };
+		00A918002F160F5E00440BEA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917CE2F160F5E00440BEA /* ContentView.swift */; };
+		00A918012F160F5E00440BEA /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D72F160F5E00440BEA /* Question.swift */; };
+		00A918022F160F5E00440BEA /* ScenarioRunnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D92F160F5E00440BEA /* ScenarioRunnerView.swift */; };
+		00A918032F160F5E00440BEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00A917CC2F160F5E00440BEA /* Assets.xcassets */; };
+		00A918052F160F5E00440BEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00A917CC2F160F5E00440BEA /* Assets.xcassets */; };
+		00A918072F160F5E00440BEA /* DentalExamPrepApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D02F160F5E00440BEA /* DentalExamPrepApp.swift */; };
+		00A918082F160F5E00440BEA /* ExamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D12F160F5E00440BEA /* ExamView.swift */; };
+		00A918092F160F5E00440BEA /* ProgressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D62F160F5E00440BEA /* ProgressManager.swift */; };
+		00A9180A2F160F5E00440BEA /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D22F160F5E00440BEA /* FeedbackView.swift */; };
+		00A9180B2F160F5E00440BEA /* ScoreReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917DA2F160F5E00440BEA /* ScoreReportView.swift */; };
+		00A9180C2F160F5E00440BEA /* DentalExamPrepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917DC2F160F5E00440BEA /* DentalExamPrepTests.swift */; };
+		00A9180D2F160F5E00440BEA /* Scenario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D82F160F5E00440BEA /* Scenario.swift */; };
+		00A9180E2F160F5E00440BEA /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D42F160F5E00440BEA /* MainMenuView.swift */; };
+		00A9180F2F160F5E00440BEA /* DentalExamPrepUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917DF2F160F5E00440BEA /* DentalExamPrepUITestsLaunchTests.swift */; };
+		00A918102F160F5E00440BEA /* PatientBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D52F160F5E00440BEA /* PatientBoxView.swift */; };
+		00A918112F160F5E00440BEA /* DentalExamPrepUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917DE2F160F5E00440BEA /* DentalExamPrepUITests.swift */; };
+		00A918122F160F5E00440BEA /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917CF2F160F5E00440BEA /* DashboardView.swift */; };
+		00A918132F160F5E00440BEA /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917CD2F160F5E00440BEA /* CardView.swift */; };
+		00A918142F160F5E00440BEA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917CE2F160F5E00440BEA /* ContentView.swift */; };
+		00A918152F160F5E00440BEA /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D72F160F5E00440BEA /* Question.swift */; };
+		00A918162F160F5E00440BEA /* ScenarioRunnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D92F160F5E00440BEA /* ScenarioRunnerView.swift */; };
+		00EC43BE2F1334E400801024 /* FirebaseAI in Frameworks */ = {isa = PBXBuildFile; productRef = 00EC43BD2F1334E400801024 /* FirebaseAI */; };
+		00EC43C02F1334E400801024 /* FirebaseAILogic in Frameworks */ = {isa = PBXBuildFile; productRef = 00EC43BF2F1334E400801024 /* FirebaseAILogic */; };
+		00EC43C22F1334E400801024 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 00EC43C12F1334E400801024 /* FirebaseAnalytics */; };
+		00EC43C42F1334E400801024 /* FirebaseAnalyticsCore in Frameworks */ = {isa = PBXBuildFile; productRef = 00EC43C32F1334E400801024 /* FirebaseAnalyticsCore */; };
+		00EC43C62F1334E400801024 /* FirebaseAnalyticsIdentitySupport in Frameworks */ = {isa = PBXBuildFile; productRef = 00EC43C52F1334E400801024 /* FirebaseAnalyticsIdentitySupport */; };
+		00EC43C82F1334E400801025 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 00EC43C72F1334E400801025 /* FirebaseFirestore */; };
+		AA000001AAAA000100000001 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001AAAA000000000001 /* Theme.swift */; };
+		AA000001AAAA000100000002 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001AAAA000000000002 /* AppLogger.swift */; };
+		AA000001AAAA000100000003 /* QuestionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001AAAA000000000003 /* QuestionService.swift */; };
+		AA000001AAAA000100000004 /* RemoteImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001AAAA000000000004 /* RemoteImageView.swift */; };
+		AA000002AAAA000100000001 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001AAAA000000000001 /* Theme.swift */; };
+		AA000002AAAA000100000002 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001AAAA000000000002 /* AppLogger.swift */; };
+		AA000002AAAA000100000003 /* QuestionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001AAAA000000000003 /* QuestionService.swift */; };
+		AA000002AAAA000100000004 /* RemoteImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001AAAA000000000004 /* RemoteImageView.swift */; };
+		AA000003AAAA000100000001 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001AAAA000000000001 /* Theme.swift */; };
+		AA000003AAAA000100000002 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001AAAA000000000002 /* AppLogger.swift */; };
+		AA000003AAAA000100000003 /* QuestionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001AAAA000000000003 /* QuestionService.swift */; };
+		AA000003AAAA000100000004 /* RemoteImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001AAAA000000000004 /* RemoteImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		003F2F472F174ED7001FA198 /* PBXContainerItemProxy */ = {
+		00EC43A02F1333D000801024 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 003F2F312F174ED5001FA198 /* Project object */;
+			containerPortal = 00EC438A2F1333CD00801024 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 003F2F382F174ED5001FA198;
-			remoteInfo = RapidDent;
+			remoteGlobalIDString = 00EC43912F1333CD00801024;
+			remoteInfo = DentalExamPrep;
 		};
-		003F2F512F174ED7001FA198 /* PBXContainerItemProxy */ = {
+		00EC43AA2F1333D000801024 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 003F2F312F174ED5001FA198 /* Project object */;
+			containerPortal = 00EC438A2F1333CD00801024 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 003F2F382F174ED5001FA198;
-			remoteInfo = RapidDent;
+			remoteGlobalIDString = 00EC43912F1333CD00801024;
+			remoteInfo = DentalExamPrep;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		003F2F392F174ED5001FA198 /* RapidDent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RapidDent.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		003F2F462F174ED7001FA198 /* RapidDentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RapidDentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		003F2F502F174ED7001FA198 /* RapidDentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RapidDentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00A917CC2F160F5E00440BEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		00A917CD2F160F5E00440BEA /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		00A917CE2F160F5E00440BEA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		00A917CF2F160F5E00440BEA /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		00A917D02F160F5E00440BEA /* DentalExamPrepApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DentalExamPrepApp.swift; sourceTree = "<group>"; };
+		00A917D12F160F5E00440BEA /* ExamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamView.swift; sourceTree = "<group>"; };
+		00A917D22F160F5E00440BEA /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
+		00A917D42F160F5E00440BEA /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
+		00A917D52F160F5E00440BEA /* PatientBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientBoxView.swift; sourceTree = "<group>"; };
+		00A917D62F160F5E00440BEA /* ProgressManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressManager.swift; sourceTree = "<group>"; };
+		00A917D72F160F5E00440BEA /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		00A917D82F160F5E00440BEA /* Scenario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scenario.swift; sourceTree = "<group>"; };
+		00A917D92F160F5E00440BEA /* ScenarioRunnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenarioRunnerView.swift; sourceTree = "<group>"; };
+		00A917DA2F160F5E00440BEA /* ScoreReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreReportView.swift; sourceTree = "<group>"; };
+		AA000001AAAA000000000001 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		AA000001AAAA000000000002 /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
+		AA000001AAAA000000000003 /* QuestionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionService.swift; sourceTree = "<group>"; };
+		AA000001AAAA000000000004 /* RemoteImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageView.swift; sourceTree = "<group>"; };
+		BB000001BBBB000000000001 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		00A917DC2F160F5E00440BEA /* DentalExamPrepTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DentalExamPrepTests.swift; sourceTree = "<group>"; };
+		00A917DE2F160F5E00440BEA /* DentalExamPrepUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DentalExamPrepUITests.swift; sourceTree = "<group>"; };
+		00A917DF2F160F5E00440BEA /* DentalExamPrepUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DentalExamPrepUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		00EC43922F1333CD00801024 /* RapidDent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RapidDent.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00EC439F2F1333D000801024 /* RapidDentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RapidDentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00EC43A92F1333D000801024 /* RapidDentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RapidDentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		003F2F3B2F174ED5001FA198 /* RapidDent */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = RapidDent;
-			sourceTree = "<group>";
-		};
-		003F2F492F174ED7001FA198 /* RapidDentTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = RapidDentTests;
-			sourceTree = "<group>";
-		};
-		003F2F532F174ED7001FA198 /* RapidDentUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = RapidDentUITests;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXFrameworksBuildPhase section */
-		003F2F362F174ED5001FA198 /* Frameworks */ = {
+		00EC438F2F1333CD00801024 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00FB00032F174FFF00000002 /* FirebaseAILogic in Frameworks */,
-				00FB00092F174FFF00000005 /* FirebaseAnalyticsIdentitySupport in Frameworks */,
-				00FB00012F174FFF00000001 /* FirebaseAI in Frameworks */,
-				00FB00052F174FFF00000003 /* FirebaseAnalytics in Frameworks */,
-				00FB00072F174FFF00000004 /* FirebaseAnalyticsCore in Frameworks */,
-				00FB000B2F174FFF00000006 /* FirebaseFirestore in Frameworks */,
+				00EC43C02F1334E400801024 /* FirebaseAILogic in Frameworks */,
+				00EC43C62F1334E400801024 /* FirebaseAnalyticsIdentitySupport in Frameworks */,
+				00EC43BE2F1334E400801024 /* FirebaseAI in Frameworks */,
+				00EC43C22F1334E400801024 /* FirebaseAnalytics in Frameworks */,
+				00EC43C42F1334E400801024 /* FirebaseAnalyticsCore in Frameworks */,
+				00EC43C82F1334E400801025 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		003F2F432F174ED7001FA198 /* Frameworks */ = {
+		00EC439C2F1333D000801024 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		003F2F4D2F174ED7001FA198 /* Frameworks */ = {
+		00EC43A62F1333D000801024 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -87,22 +157,65 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		003F2F302F174ED5001FA198 = {
+		00A917DB2F160F5E00440BEA /* RapidDent */ = {
 			isa = PBXGroup;
 			children = (
-				003F2F3B2F174ED5001FA198 /* RapidDent */,
-				003F2F492F174ED7001FA198 /* RapidDentTests */,
-				003F2F532F174ED7001FA198 /* RapidDentUITests */,
-				003F2F3A2F174ED5001FA198 /* Products */,
+				00A917CC2F160F5E00440BEA /* Assets.xcassets */,
+				00A917CD2F160F5E00440BEA /* CardView.swift */,
+				00A917CE2F160F5E00440BEA /* ContentView.swift */,
+				00A917CF2F160F5E00440BEA /* DashboardView.swift */,
+				00A917D02F160F5E00440BEA /* DentalExamPrepApp.swift */,
+				00A917D12F160F5E00440BEA /* ExamView.swift */,
+				00A917D22F160F5E00440BEA /* FeedbackView.swift */,
+				00A917D42F160F5E00440BEA /* MainMenuView.swift */,
+				00A917D52F160F5E00440BEA /* PatientBoxView.swift */,
+				00A917D62F160F5E00440BEA /* ProgressManager.swift */,
+				00A917D72F160F5E00440BEA /* Question.swift */,
+				00A917D82F160F5E00440BEA /* Scenario.swift */,
+				00A917D92F160F5E00440BEA /* ScenarioRunnerView.swift */,
+				00A917DA2F160F5E00440BEA /* ScoreReportView.swift */,
+				AA000001AAAA000000000001 /* Theme.swift */,
+				AA000001AAAA000000000002 /* AppLogger.swift */,
+				AA000001AAAA000000000003 /* QuestionService.swift */,
+				AA000001AAAA000000000004 /* RemoteImageView.swift */,
+				BB000001BBBB000000000001 /* GoogleService-Info.plist */,
+			);
+			path = RapidDent;
+			sourceTree = "<group>";
+		};
+		00A917DD2F160F5E00440BEA /* RapidDentTests */ = {
+			isa = PBXGroup;
+			children = (
+				00A917DC2F160F5E00440BEA /* DentalExamPrepTests.swift */,
+			);
+			path = RapidDentTests;
+			sourceTree = "<group>";
+		};
+		00A917E02F160F5E00440BEA /* RapidDentUITests */ = {
+			isa = PBXGroup;
+			children = (
+				00A917DE2F160F5E00440BEA /* DentalExamPrepUITests.swift */,
+				00A917DF2F160F5E00440BEA /* DentalExamPrepUITestsLaunchTests.swift */,
+			);
+			path = RapidDentUITests;
+			sourceTree = "<group>";
+		};
+		00EC43892F1333CD00801024 = {
+			isa = PBXGroup;
+			children = (
+				00A917DB2F160F5E00440BEA /* RapidDent */,
+				00A917DD2F160F5E00440BEA /* RapidDentTests */,
+				00A917E02F160F5E00440BEA /* RapidDentUITests */,
+				00EC43932F1333CD00801024 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		003F2F3A2F174ED5001FA198 /* Products */ = {
+		00EC43932F1333CD00801024 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				003F2F392F174ED5001FA198 /* RapidDent.app */,
-				003F2F462F174ED7001FA198 /* RapidDentTests.xctest */,
-				003F2F502F174ED7001FA198 /* RapidDentUITests.xctest */,
+				00EC43922F1333CD00801024 /* RapidDent.app */,
+				00EC439F2F1333D000801024 /* RapidDentTests.xctest */,
+				00EC43A92F1333D000801024 /* RapidDentUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -110,190 +223,207 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		003F2F382F174ED5001FA198 /* RapidDent */ = {
+		00EC43912F1333CD00801024 /* RapidDent */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 003F2F5A2F174ED7001FA198 /* Build configuration list for PBXNativeTarget "RapidDent" */;
+			buildConfigurationList = 00EC43B32F1333D000801024 /* Build configuration list for PBXNativeTarget "RapidDent" */;
 			buildPhases = (
-				003F2F352F174ED5001FA198 /* Sources */,
-				003F2F362F174ED5001FA198 /* Frameworks */,
-				003F2F372F174ED5001FA198 /* Resources */,
+				00EC438E2F1333CD00801024 /* Sources */,
+				00EC438F2F1333CD00801024 /* Frameworks */,
+				00EC43902F1333CD00801024 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				003F2F3B2F174ED5001FA198 /* RapidDent */,
 			);
 			name = RapidDent;
 			packageProductDependencies = (
-				00FB00002F174FFF00000001 /* FirebaseAI */,
-				00FB00022F174FFF00000002 /* FirebaseAILogic */,
-				00FB00042F174FFF00000003 /* FirebaseAnalytics */,
-				00FB00062F174FFF00000004 /* FirebaseAnalyticsCore */,
-				00FB00082F174FFF00000005 /* FirebaseAnalyticsIdentitySupport */,
-				00FB000A2F174FFF00000006 /* FirebaseFirestore */,
+				00EC43BD2F1334E400801024 /* FirebaseAI */,
+				00EC43BF2F1334E400801024 /* FirebaseAILogic */,
+				00EC43C12F1334E400801024 /* FirebaseAnalytics */,
+				00EC43C32F1334E400801024 /* FirebaseAnalyticsCore */,
+				00EC43C52F1334E400801024 /* FirebaseAnalyticsIdentitySupport */,
+				00EC43C72F1334E400801025 /* FirebaseFirestore */,
 			);
-			productName = RapidDent;
-			productReference = 003F2F392F174ED5001FA198 /* RapidDent.app */;
+			productName = DentalExamPrep;
+			productReference = 00EC43922F1333CD00801024 /* RapidDent.app */;
 			productType = "com.apple.product-type.application";
 		};
-		003F2F452F174ED7001FA198 /* RapidDentTests */ = {
+		00EC439E2F1333D000801024 /* RapidDentTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 003F2F5D2F174ED7001FA198 /* Build configuration list for PBXNativeTarget "RapidDentTests" */;
+			buildConfigurationList = 00EC43B62F1333D000801024 /* Build configuration list for PBXNativeTarget "RapidDentTests" */;
 			buildPhases = (
-				003F2F422F174ED7001FA198 /* Sources */,
-				003F2F432F174ED7001FA198 /* Frameworks */,
-				003F2F442F174ED7001FA198 /* Resources */,
+				00EC439B2F1333D000801024 /* Sources */,
+				00EC439C2F1333D000801024 /* Frameworks */,
+				00EC439D2F1333D000801024 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				003F2F482F174ED7001FA198 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				003F2F492F174ED7001FA198 /* RapidDentTests */,
+				00EC43A12F1333D000801024 /* PBXTargetDependency */,
 			);
 			name = RapidDentTests;
 			packageProductDependencies = (
 			);
-			productName = RapidDentTests;
-			productReference = 003F2F462F174ED7001FA198 /* RapidDentTests.xctest */;
+			productName = DentalExamPrepTests;
+			productReference = 00EC439F2F1333D000801024 /* RapidDentTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		003F2F4F2F174ED7001FA198 /* RapidDentUITests */ = {
+		00EC43A82F1333D000801024 /* RapidDentUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 003F2F602F174ED7001FA198 /* Build configuration list for PBXNativeTarget "RapidDentUITests" */;
+			buildConfigurationList = 00EC43B92F1333D000801024 /* Build configuration list for PBXNativeTarget "RapidDentUITests" */;
 			buildPhases = (
-				003F2F4C2F174ED7001FA198 /* Sources */,
-				003F2F4D2F174ED7001FA198 /* Frameworks */,
-				003F2F4E2F174ED7001FA198 /* Resources */,
+				00EC43A52F1333D000801024 /* Sources */,
+				00EC43A62F1333D000801024 /* Frameworks */,
+				00EC43A72F1333D000801024 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				003F2F522F174ED7001FA198 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				003F2F532F174ED7001FA198 /* RapidDentUITests */,
+				00EC43AB2F1333D000801024 /* PBXTargetDependency */,
 			);
 			name = RapidDentUITests;
 			packageProductDependencies = (
 			);
-			productName = RapidDentUITests;
-			productReference = 003F2F502F174ED7001FA198 /* RapidDentUITests.xctest */;
+			productName = DentalExamPrepUITests;
+			productReference = 00EC43A92F1333D000801024 /* RapidDentUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		003F2F312F174ED5001FA198 /* Project object */ = {
+		00EC438A2F1333CD00801024 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2620;
 				LastUpgradeCheck = 2620;
 				TargetAttributes = {
-					003F2F382F174ED5001FA198 = {
+					00EC43912F1333CD00801024 = {
 						CreatedOnToolsVersion = 26.2;
 					};
-					003F2F452F174ED7001FA198 = {
+					00EC439E2F1333D000801024 = {
 						CreatedOnToolsVersion = 26.2;
-						TestTargetID = 003F2F382F174ED5001FA198;
+						TestTargetID = 00EC43912F1333CD00801024;
 					};
-					003F2F4F2F174ED7001FA198 = {
+					00EC43A82F1333D000801024 = {
 						CreatedOnToolsVersion = 26.2;
-						TestTargetID = 003F2F382F174ED5001FA198;
+						TestTargetID = 00EC43912F1333CD00801024;
 					};
 				};
 			};
-			buildConfigurationList = 003F2F342F174ED5001FA198 /* Build configuration list for PBXProject "RapidDent" */;
+			buildConfigurationList = 00EC438D2F1333CD00801024 /* Build configuration list for PBXProject "RapidDent" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 003F2F302F174ED5001FA198;
+			mainGroup = 00EC43892F1333CD00801024;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				00FB00FF2F174FFF00000999 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				00EC43BC2F1334E400801024 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 003F2F3A2F174ED5001FA198 /* Products */;
+			productRefGroup = 00EC43932F1333CD00801024 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				003F2F382F174ED5001FA198 /* RapidDent */,
-				003F2F452F174ED7001FA198 /* RapidDentTests */,
-				003F2F4F2F174ED7001FA198 /* RapidDentUITests */,
+				00EC43912F1333CD00801024 /* RapidDent */,
+				00EC439E2F1333D000801024 /* RapidDentTests */,
+				00EC43A82F1333D000801024 /* RapidDentUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		003F2F372F174ED5001FA198 /* Resources */ = {
+		00EC43902F1333CD00801024 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00A918052F160F5E00440BEA /* Assets.xcassets in Resources */,
+				BB000001BBBB000100000001 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		003F2F442F174ED7001FA198 /* Resources */ = {
+		00EC439D2F1333D000801024 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00A917F12F160F5E00440BEA /* Assets.xcassets in Resources */,
+				BB000001BBBB000100000002 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		003F2F4E2F174ED7001FA198 /* Resources */ = {
+		00EC43A72F1333D000801024 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00A918032F160F5E00440BEA /* Assets.xcassets in Resources */,
+				BB000001BBBB000100000003 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		003F2F352F174ED5001FA198 /* Sources */ = {
+		00EC438E2F1333CD00801024 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00A918072F160F5E00440BEA /* DentalExamPrepApp.swift in Sources */,
+				00A918082F160F5E00440BEA /* ExamView.swift in Sources */,
+				00A918092F160F5E00440BEA /* ProgressManager.swift in Sources */,
+				00A9180A2F160F5E00440BEA /* FeedbackView.swift in Sources */,
+				00A9180B2F160F5E00440BEA /* ScoreReportView.swift in Sources */,
+				00A9180D2F160F5E00440BEA /* Scenario.swift in Sources */,
+				00A9180E2F160F5E00440BEA /* MainMenuView.swift in Sources */,
+				00A918102F160F5E00440BEA /* PatientBoxView.swift in Sources */,
+				00A918122F160F5E00440BEA /* DashboardView.swift in Sources */,
+				00A918132F160F5E00440BEA /* CardView.swift in Sources */,
+				00A918142F160F5E00440BEA /* ContentView.swift in Sources */,
+				00A918152F160F5E00440BEA /* Question.swift in Sources */,
+				00A918162F160F5E00440BEA /* ScenarioRunnerView.swift in Sources */,
+				AA000001AAAA000100000001 /* Theme.swift in Sources */,
+				AA000001AAAA000100000002 /* AppLogger.swift in Sources */,
+				AA000001AAAA000100000003 /* QuestionService.swift in Sources */,
+				AA000001AAAA000100000004 /* RemoteImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		003F2F422F174ED7001FA198 /* Sources */ = {
+		00EC439B2F1333D000801024 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00A917E62F160F5E00440BEA /* DentalExamPrepTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		003F2F4C2F174ED7001FA198 /* Sources */ = {
+		00EC43A52F1333D000801024 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00A917FD2F160F5E00440BEA /* DentalExamPrepUITests.swift in Sources */,
+				00A917FB2F160F5E00440BEA /* DentalExamPrepUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		003F2F482F174ED7001FA198 /* PBXTargetDependency */ = {
+		00EC43A12F1333D000801024 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 003F2F382F174ED5001FA198 /* RapidDent */;
-			targetProxy = 003F2F472F174ED7001FA198 /* PBXContainerItemProxy */;
+			target = 00EC43912F1333CD00801024 /* RapidDent */;
+			targetProxy = 00EC43A02F1333D000801024 /* PBXContainerItemProxy */;
 		};
-		003F2F522F174ED7001FA198 /* PBXTargetDependency */ = {
+		00EC43AB2F1333D000801024 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 003F2F382F174ED5001FA198 /* RapidDent */;
-			targetProxy = 003F2F512F174ED7001FA198 /* PBXContainerItemProxy */;
+			target = 00EC43912F1333CD00801024 /* RapidDent */;
+			targetProxy = 00EC43AA2F1333D000801024 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		003F2F582F174ED7001FA198 /* Debug */ = {
+		00EC43B12F1333D000801024 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -331,7 +461,7 @@
 				DEVELOPMENT_TEAM = U8B97NVD7G;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -355,7 +485,7 @@
 			};
 			name = Debug;
 		};
-		003F2F592F174ED7001FA198 /* Release */ = {
+		00EC43B22F1333D000801024 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -393,7 +523,7 @@
 				DEVELOPMENT_TEAM = U8B97NVD7G;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -409,7 +539,7 @@
 			};
 			name = Release;
 		};
-		003F2F5B2F174ED7001FA198 /* Debug */ = {
+		00EC43B42F1333D000801024 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -422,6 +552,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = RapidDent;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -432,7 +563,6 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -454,7 +584,7 @@
 			};
 			name = Debug;
 		};
-		003F2F5C2F174ED7001FA198 /* Release */ = {
+		00EC43B52F1333D000801024 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -467,6 +597,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = RapidDent;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -477,7 +608,6 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -499,7 +629,33 @@
 			};
 			name = Release;
 		};
-		003F2F5E2F174ED7001FA198 /* Debug */ = {
+		00EC43B72F1333D000801024 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U8B97NVD7G;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				MACOSX_DEPLOYMENT_TARGET = 26.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.manya.DentalExamPrepTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RapidDent.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RapidDent";
+				XROS_DEPLOYMENT_TARGET = 26.2;
+			};
+			name = Debug;
+		};
+		00EC43B82F1333D000801024 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -523,35 +679,9 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RapidDent.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RapidDent";
 				XROS_DEPLOYMENT_TARGET = 26.2;
 			};
-			name = Debug;
-		};
-		003F2F5F2F174ED7001FA198 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = U8B97NVD7G;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
-				MACOSX_DEPLOYMENT_TARGET = 26.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.manya.RapidDentTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RapidDent.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RapidDent";
-				XROS_DEPLOYMENT_TARGET = 26.2;
-			};
 			name = Release;
 		};
-		003F2F612F174ED7001FA198 /* Debug */ = {
+		00EC43BA2F1333D000801024 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -576,7 +706,7 @@
 			};
 			name = Debug;
 		};
-		003F2F622F174ED7001FA198 /* Release */ = {
+		00EC43BB2F1333D000801024 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -604,38 +734,38 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		003F2F342F174ED5001FA198 /* Build configuration list for PBXProject "RapidDent" */ = {
+		00EC438D2F1333CD00801024 /* Build configuration list for PBXProject "RapidDent" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				003F2F582F174ED7001FA198 /* Debug */,
-				003F2F592F174ED7001FA198 /* Release */,
+				00EC43B12F1333D000801024 /* Debug */,
+				00EC43B22F1333D000801024 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		003F2F5A2F174ED7001FA198 /* Build configuration list for PBXNativeTarget "RapidDent" */ = {
+		00EC43B32F1333D000801024 /* Build configuration list for PBXNativeTarget "RapidDent" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				003F2F5B2F174ED7001FA198 /* Debug */,
-				003F2F5C2F174ED7001FA198 /* Release */,
+				00EC43B42F1333D000801024 /* Debug */,
+				00EC43B52F1333D000801024 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		003F2F5D2F174ED7001FA198 /* Build configuration list for PBXNativeTarget "RapidDentTests" */ = {
+		00EC43B62F1333D000801024 /* Build configuration list for PBXNativeTarget "RapidDentTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				003F2F5E2F174ED7001FA198 /* Debug */,
-				003F2F5F2F174ED7001FA198 /* Release */,
+				00EC43B72F1333D000801024 /* Debug */,
+				00EC43B82F1333D000801024 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		003F2F602F174ED7001FA198 /* Build configuration list for PBXNativeTarget "RapidDentUITests" */ = {
+		00EC43B92F1333D000801024 /* Build configuration list for PBXNativeTarget "RapidDentUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				003F2F612F174ED7001FA198 /* Debug */,
-				003F2F622F174ED7001FA198 /* Release */,
+				00EC43BA2F1333D000801024 /* Debug */,
+				00EC43BB2F1333D000801024 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -643,7 +773,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		00FB00FF2F174FFF00000999 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		00EC43BC2F1334E400801024 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
@@ -654,37 +784,37 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		00FB00002F174FFF00000001 /* FirebaseAI */ = {
+		00EC43BD2F1334E400801024 /* FirebaseAI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 00FB00FF2F174FFF00000999 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 00EC43BC2F1334E400801024 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAI;
 		};
-		00FB00022F174FFF00000002 /* FirebaseAILogic */ = {
+		00EC43BF2F1334E400801024 /* FirebaseAILogic */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 00FB00FF2F174FFF00000999 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 00EC43BC2F1334E400801024 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAILogic;
 		};
-		00FB00042F174FFF00000003 /* FirebaseAnalytics */ = {
+		00EC43C12F1334E400801024 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 00FB00FF2F174FFF00000999 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 00EC43BC2F1334E400801024 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
-		00FB00062F174FFF00000004 /* FirebaseAnalyticsCore */ = {
+		00EC43C32F1334E400801024 /* FirebaseAnalyticsCore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 00FB00FF2F174FFF00000999 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 00EC43BC2F1334E400801024 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalyticsCore;
 		};
-		00FB00082F174FFF00000005 /* FirebaseAnalyticsIdentitySupport */ = {
+		00EC43C52F1334E400801024 /* FirebaseAnalyticsIdentitySupport */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 00FB00FF2F174FFF00000999 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 00EC43BC2F1334E400801024 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalyticsIdentitySupport;
 		};
-		00FB000A2F174FFF00000006 /* FirebaseFirestore */ = {
+		00EC43C72F1334E400801025 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 00FB00FF2F174FFF00000999 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 00EC43BC2F1334E400801024 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = 003F2F312F174ED5001FA198 /* Project object */;
+	rootObject = 00EC438A2F1333CD00801024 /* Project object */;
 }

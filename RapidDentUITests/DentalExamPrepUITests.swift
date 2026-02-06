@@ -1,13 +1,13 @@
 //
-//  DentalExamPrepUITests.swift
-//  DentalExamPrepUITests
+//  RapidDentUITests.swift
+//  RapidDentUITests
 //
 //  Created by Mallesh on 1/10/26.
 //
 
 import XCTest
 
-final class DentalExamPrepUITests: XCTestCase {
+final class RapidDentUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -39,3 +39,4 @@ final class DentalExamPrepUITests: XCTestCase {
         }
     }
 }
+

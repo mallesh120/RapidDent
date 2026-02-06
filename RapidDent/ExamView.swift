@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import os
 #if canImport(FirebaseFirestore)
 import FirebaseFirestore
 #endif
@@ -20,10 +21,9 @@ struct ExamView: View {
     @State private var isExamFinished = false
     @State private var isLoading = true
     @State private var errorMessage: String?
+    @State private var timerSubscription: AnyCancellable?
     
     @Environment(\.dismiss) var dismiss
-    
-    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
 #if canImport(FirebaseFirestore)
     private let db = Firestore.firestore()
@@ -31,17 +31,6 @@ struct ExamView: View {
     
     var body: some View {
         ZStack {
-            // Background gradient
-            LinearGradient(
-                gradient: Gradient(colors: [
-                    Color(red: 0.95, green: 0.97, blue: 0.99),
-                    Color(red: 0.90, green: 0.94, blue: 0.98)
-                ]),
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
-            
             VStack(spacing: 0) {
                 // Header with timer and progress
                 headerView
@@ -59,31 +48,22 @@ struct ExamView: View {
                 }
             }
             
-            // Hidden NavigationLink for results (outside ZStack)
-            NavigationLink(
-                destination: ScoreReportView(
+            // Hidden NavigationLink for results
+            .navigationDestination(isPresented: $isExamFinished) {
+                ScoreReportView(
                     score: score,
                     total: questions.count,
                     wrongQuestions: wrongQuestions
-                ),
-                isActive: $isExamFinished
-            ) {
-                EmptyView()
+                )
             }
-            .hidden()
         }
         .onAppear {
             fetchExamQuestions()
+            startTimer()
         }
-        .onReceive(timer) { _ in
-            if timeRemaining > 0 && !isExamFinished {
-                timeRemaining -= 1
-            }
-            
-            // Check if time is up
-            if timeRemaining == 0 && !isExamFinished {
-                finishExam()
-            }
+        .appBackground()
+        .onDisappear {
+            timerSubscription?.cancel()
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {
@@ -95,7 +75,7 @@ struct ExamView: View {
                         Image(systemName: "chevron.left")
                         Text("Exit")
                     }
-                    .foregroundColor(Color(red: 0.0, green: 0.4, blue: 0.8))
+                    .foregroundColor(.rdBrand)
                 }
             }
         }
@@ -107,7 +87,7 @@ struct ExamView: View {
         VStack(spacing: 12) {
             Text("Mock Exam 📝")
                 .font(.system(size: 28, weight: .bold))
-                .foregroundColor(Color(red: 0.0, green: 0.4, blue: 0.8))
+                .foregroundColor(.rdBrand)
             
             HStack(spacing: 20) {
                 // Timer
@@ -150,7 +130,7 @@ struct ExamView: View {
         VStack(spacing: 20) {
             ProgressView()
                 .scaleEffect(1.5)
-                .tint(Color(red: 0.0, green: 0.4, blue: 0.8))
+                .tint(.rdBrand)
             
             Text("Preparing Mock Exam...")
                 .font(.system(size: 18, weight: .medium))
@@ -182,7 +162,7 @@ struct ExamView: View {
                     .foregroundColor(.white)
                     .padding(.horizontal, 32)
                     .padding(.vertical, 12)
-                    .background(Color(red: 0.0, green: 0.4, blue: 0.8))
+                    .background(Color.rdBrand)
                     .cornerRadius(25)
             }
         }
@@ -219,6 +199,20 @@ struct ExamView: View {
         return String(format: "%02d:%02d", minutes, seconds)
     }
     
+    // MARK: - Timer
+    
+    private func startTimer() {
+        timerSubscription = Timer.publish(every: 1, on: .main, in: .common)
+            .autoconnect()
+            .sink { _ in
+                guard timeRemaining > 0, !isExamFinished else {
+                    if timeRemaining == 0, !isExamFinished { finishExam() }
+                    return
+                }
+                timeRemaining -= 1
+            }
+    }
+    
     // MARK: - Data Fetching
     
     private func fetchExamQuestions() {
@@ -233,13 +227,13 @@ struct ExamView: View {
                 
                 if let error = error {
                     errorMessage = "Failed to load exam questions: \(error.localizedDescription)"
-                    print("❌ Error fetching exam questions: \(error)")
+                    AppLogger.data.error("Error fetching exam questions: \(error.localizedDescription)")
                     return
                 }
                 
                 guard let documents = snapshot?.documents else {
                     errorMessage = "No questions found in database"
-                    print("❌ No documents found")
+                    AppLogger.data.warning("No exam documents found")
                     return
                 }
                 
@@ -247,18 +241,18 @@ struct ExamView: View {
                 
                 if fetchedQuestions.count < 30 {
                     errorMessage = "Not enough questions available. Need at least 30 questions."
-                    print("⚠️ Only \(fetchedQuestions.count) questions available")
+                    AppLogger.data.warning("Only \(fetchedQuestions.count) exam questions available")
                 } else {
                     // Shuffle and take first 30
                     questions = Array(fetchedQuestions.shuffled().prefix(30))
-                    print("✅ Mock Exam ready with 30 questions")
+                    AppLogger.data.info("Mock Exam ready with 30 questions")
                 }
             }
 #else
         // Fallback when FirebaseFirestore isn't available
         isLoading = false
         errorMessage = "Firebase is not configured. Please ensure Firebase is properly set up."
-        print("⚠️ Firebase not available - cannot fetch questions")
+        AppLogger.data.warning("Firebase not available")
 #endif
     }
     
@@ -268,19 +262,17 @@ struct ExamView: View {
         let isCorrect: Bool
         
         if userAnsweredTrue {
-            // User answered True
             isCorrect = question.correctOption == "A"
         } else {
-            // User answered False
             isCorrect = question.correctOption == "B"
         }
         
         if isCorrect {
             score += 1
-            print("✅ Correct! Score: \(score)")
+            HapticManager.notification(.success)
         } else {
             wrongQuestions.append(question)
-            print("❌ Wrong!")
+            HapticManager.notification(.error)
         }
         
         // Move to next question immediately (no feedback shown)
@@ -297,7 +289,9 @@ struct ExamView: View {
     }
     
     private func finishExam() {
-        print("🏁 Exam finished! Score: \(score)/\(questions.count)")
+        timerSubscription?.cancel()
+        HapticManager.notification(.warning)
+        AppLogger.game.info("Exam finished! Score: \(score)/\(questions.count)")
         isExamFinished = true
     }
 }
@@ -306,7 +300,7 @@ struct ExamView: View {
 
 struct ExamView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             ExamView()
         }
     }

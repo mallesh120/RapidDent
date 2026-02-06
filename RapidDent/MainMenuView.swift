@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainMenuView: View {
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 // Background gradient
                 LinearGradient(
@@ -27,17 +27,19 @@ struct MainMenuView: View {
                     VStack(spacing: 12) {
                         Image(systemName: "cross.case.fill")
                             .font(.system(size: 80))
-                            .foregroundColor(Color(red: 0.0, green: 0.4, blue: 0.8))
+                            .foregroundColor(.rdBrand)
                         
                         Text("RapidDent")
                             .font(.system(size: 36, weight: .bold))
-                            .foregroundColor(Color(red: 0.0, green: 0.4, blue: 0.8))
+                            .foregroundColor(.rdBrand)
                         
                         Text("INBDE Study Companion")
                             .font(.system(size: 18, weight: .medium))
                             .foregroundColor(.gray)
                     }
                     .padding(.top, 60)
+                    .accessibilityElement(children: .combine)
+                    .accessibilityLabel("RapidDent, INBDE Study Companion")
                     
                     Spacer()
                     
@@ -53,6 +55,7 @@ struct MainMenuView: View {
                                 accentColor: Color(red: 1.0, green: 0.4, blue: 0.0)
                             )
                         }
+                        .accessibilityLabel("Rapid Fire mode. Swipe True or False questions for quick review")
                         
                         // Clinical Scenarios Mode
                         NavigationLink(destination: ScenarioRunnerView()) {
@@ -61,9 +64,10 @@ struct MainMenuView: View {
                                 title: "Clinical Scenarios 🏥",
                                 description: "Patient cases with multiple choice questions",
                                 color: .blue,
-                                accentColor: Color(red: 0.0, green: 0.4, blue: 0.8)
+                                accentColor: .rdBrand
                             )
                         }
+                        .accessibilityLabel("Clinical Scenarios mode. Patient cases with multiple choice questions")
                         
                         // Dashboard
                         NavigationLink(destination: DashboardView()) {
@@ -72,9 +76,10 @@ struct MainMenuView: View {
                                 title: "Dashboard 📊",
                                 description: "Track your progress and review statistics",
                                 color: .green,
-                                accentColor: Color(red: 0.0, green: 0.7, blue: 0.3)
+                                accentColor: .rdSuccess
                             )
                         }
+                        .accessibilityLabel("Dashboard. Track your progress and review statistics")
                     }
                     .padding(.horizontal, 32)
                     
@@ -87,9 +92,8 @@ struct MainMenuView: View {
                         .padding(.bottom, 40)
                 }
             }
-            .navigationBarHidden(true)
+            .toolbar(.hidden, for: .navigationBar)
         }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

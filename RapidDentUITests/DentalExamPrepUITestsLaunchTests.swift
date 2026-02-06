@@ -1,13 +1,13 @@
 //
-//  DentalExamPrepUITestsLaunchTests.swift
-//  DentalExamPrepUITests
+//  RapidDentUITestsLaunchTests.swift
+//  RapidDentUITests
 //
 //  Created by Mallesh on 1/10/26.
 //
 
 import XCTest
 
-final class DentalExamPrepUITestsLaunchTests: XCTestCase {
+final class RapidDentUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
@@ -31,3 +31,4 @@ final class DentalExamPrepUITestsLaunchTests: XCTestCase {
         add(attachment)
     }
 }
+

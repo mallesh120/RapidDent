@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseFirestore
+import os
 
 struct Scenario: Identifiable {
     let id: String
@@ -27,7 +28,7 @@ struct Scenario: Identifiable {
         
         // Parse patient_profile map
         guard let patientProfile = data["patient_profile"] as? [String: Any] else {
-            print("❌ Missing patient_profile in scenario document: \(document.documentID)")
+            AppLogger.data.warning("Missing patient_profile in scenario: \(document.documentID)")
             return nil
         }
         
@@ -35,13 +36,13 @@ struct Scenario: Identifiable {
         guard let age = patientProfile["age"] as? Int,
               let gender = patientProfile["gender"] as? String,
               let chiefComplaint = patientProfile["chief_complaint"] as? String else {
-            print("❌ Missing required fields in patient_profile: \(document.documentID)")
+            AppLogger.data.warning("Missing required fields in patient_profile: \(document.documentID)")
             return nil
         }
         
         // Extract clinical notes
         guard let clinicalNotes = data["clinical_notes"] as? String else {
-            print("❌ Missing clinical_notes in scenario document: \(document.documentID)")
+            AppLogger.data.warning("Missing clinical_notes in scenario: \(document.documentID)")
             return nil
         }
         
@@ -54,7 +55,7 @@ struct Scenario: Identifiable {
         }
         
         guard let finalVitals = vitals else {
-            print("❌ Missing vitals in scenario document: \(document.documentID)")
+            AppLogger.data.warning("Missing vitals in scenario: \(document.documentID)")
             return nil
         }
         
@@ -75,6 +76,7 @@ struct Scenario: Identifiable {
         self.vitalSigns = finalVitals
         self.mediaUrl = data["media_url"] as? String
         
-        print("✅ Successfully parsed scenario: \(self.id)")
+        let scenarioId = self.id
+        AppLogger.data.debug("Parsed scenario: \(scenarioId)")
     }
 }
