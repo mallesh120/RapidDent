@@ -78,4 +78,14 @@ class ProgressManager: ObservableObject {
     var questionsNeedingReview: Int {
         wrongIDs.count
     }
+    
+    /// IDs of correctly answered questions (completed but not wrong)
+    var correctIDs: Set<String> {
+        completedIDs.subtracting(wrongIDs)
+    }
+    
+    /// Number of correctly answered questions
+    var questionsCorrect: Int {
+        correctIDs.count
+    }
 }

@@ -23,6 +23,8 @@ struct ScenarioRunnerView: View {
     @State private var score = 0
     @State private var answeredQuestions: Set<Int> = []
     @State private var showScenarioComplete = false
+    @State private var patientExpanded = false
+    @State private var seenScenarioIDs: Set<String> = []
     
     private var allQuestionsAnswered: Bool {
         !questions.isEmpty && answeredQuestions.count == questions.count
@@ -70,43 +72,42 @@ struct ScenarioRunnerView: View {
     // MARK: - Header View
     
     private var headerView: some View {
-        VStack(spacing: 8) {
-            Text("Clinical Scenario 🏥")
-                .font(.system(size: 28, weight: .bold))
+        HStack(spacing: 0) {
+            Text("🏥 Clinical")
+                .font(.system(size: 17, weight: .bold))
                 .foregroundColor(.rdBrand)
             
-            HStack(spacing: 20) {
-                // Score
-                HStack(spacing: 8) {
+            Spacer()
+            
+            HStack(spacing: 12) {
+                // Score chip
+                HStack(spacing: 4) {
                     Image(systemName: "star.fill")
+                        .font(.system(size: 12))
                         .foregroundColor(.yellow)
-                    Text("Score: \(score)")
-                        .font(.system(size: 16, weight: .semibold))
+                    Text("\(score)")
+                        .font(.system(size: 14, weight: .semibold))
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 5)
                 .background(Color.white)
-                .cornerRadius(16)
-                .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
+                .cornerRadius(12)
+                .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: 1)
                 
-                // Progress
+                // Progress chip
                 if !questions.isEmpty {
-                    HStack(spacing: 8) {
-                        Image(systemName: "list.number")
-                            .foregroundColor(.blue)
-                        Text("Question \(currentQuestionIndex + 1) of \(questions.count)")
-                            .font(.system(size: 16, weight: .semibold))
-                    }
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
-                    .background(Color.white)
-                    .cornerRadius(16)
-                    .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
+                    Text("\(currentQuestionIndex + 1)/\(questions.count)")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundColor(.rdBrand)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
+                        .background(Color.rdBrand.opacity(0.12))
+                        .cornerRadius(12)
                 }
             }
         }
-        .padding(.top, 16)
-        .padding(.bottom, 12)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 10)
     }
     
     // MARK: - Loading View
@@ -161,65 +162,63 @@ struct ScenarioRunnerView: View {
             if showScenarioComplete {
                 scenarioCompleteView(scenario: scenario)
             } else {
-                // Patient Box (Top Half)
-                PatientBoxView(scenario: scenario)
-                    .frame(maxHeight: .infinity)
-                    .padding(.horizontal, 16)
-                    .padding(.top, 12)
+                // Single unified scroll
+                ScrollView {
+                    VStack(spacing: 12) {
+                        // Collapsible Patient Box
+                        PatientBoxView(scenario: scenario, isExpanded: $patientExpanded)
+                            .padding(.horizontal, 16)
+                        
+                        // Question + Options inline
+                        if !questions.isEmpty && currentQuestionIndex < questions.count {
+                            questionContentView(question: questions[currentQuestionIndex])
+                                .padding(.horizontal, 16)
+                        } else if questions.isEmpty {
+                            emptyQuestionsView
+                        }
+                    }
+                    .padding(.bottom, 8)
+                }
                 
-                Divider()
-                    .padding(.vertical, 8)
-                
-                // Question Section (Bottom Half)
+                // Fixed navigation bar at bottom (never scrolls)
                 if !questions.isEmpty && currentQuestionIndex < questions.count {
-                    questionView(question: questions[currentQuestionIndex])
-                        .frame(maxHeight: .infinity)
-                } else if questions.isEmpty {
-                    emptyQuestionsView
+                    VStack(spacing: 8) {
+                        navigationButtons
+                        
+                        if isLastQuestionAnswered {
+                            scenarioEndButtons
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 10)
+                    .background(
+                        Color(uiColor: .systemBackground)
+                            .shadow(color: .black.opacity(0.06), radius: 4, x: 0, y: -2)
+                    )
                 }
             }
         }
     }
     
-    // MARK: - Question View
+    // MARK: - Question Content (no inner scroll)
     
-    private func questionView(question: Question) -> some View {
-        VStack(spacing: 16) {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
-                    // Question Text
-                    Text(question.questionText)
-                        .font(.system(size: 18, weight: .semibold))
-                        .foregroundColor(.primary)
-                        .lineSpacing(6)
-                        .padding(16)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(Color.white)
-                        .cornerRadius(12)
-                        .shadow(color: .black.opacity(0.05), radius: 4, x: 0, y: 2)
-                    
-                    // Options
-                    VStack(spacing: 12) {
-                        ForEach(question.options, id: \.id) { option in
-                            optionButton(option: option, question: question)
-                        }
-                    }
-                }
-                .padding(.horizontal, 16)
+    private func questionContentView(question: Question) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            // Question Text
+            Text(question.questionText)
+                .font(.system(size: 17, weight: .semibold))
+                .foregroundColor(.primary)
+                .lineSpacing(5)
+                .padding(14)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color.white)
+                .cornerRadius(12)
+                .shadow(color: .black.opacity(0.05), radius: 3, x: 0, y: 2)
+            
+            // Options
+            ForEach(question.options, id: \.id) { option in
+                optionButton(option: option, question: question)
             }
-            
-            // Navigation Buttons
-            navigationButtons
-                .padding(.horizontal, 16)
-            
-            // Show Next Scenario / Retry when last question is answered
-            if isLastQuestionAnswered {
-                scenarioEndButtons
-                    .padding(.horizontal, 16)
-                    .padding(.top, 8)
-            }
-            
-            Spacer().frame(height: 16)
         }
     }
     
@@ -230,18 +229,18 @@ struct ScenarioRunnerView: View {
                 checkAnswer(question: question)
             }
         }) {
-            HStack(spacing: 12) {
+            HStack(spacing: 10) {
                 // Option Letter
                 Text(option.id)
-                    .font(.system(size: 16, weight: .bold))
+                    .font(.system(size: 15, weight: .bold))
                     .foregroundColor(.white)
-                    .frame(width: 32, height: 32)
+                    .frame(width: 28, height: 28)
                     .background(getOptionColor(optionId: option.id))
                     .clipShape(Circle())
                 
                 // Option Text
                 Text(option.text)
-                    .font(.system(size: 16))
+                    .font(.system(size: 15))
                     .foregroundColor(.primary)
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -250,14 +249,14 @@ struct ScenarioRunnerView: View {
                 if answeredQuestions.contains(currentQuestionIndex) && selectedOption == option.id {
                     Image(systemName: option.id == question.correctOption ? "checkmark.circle.fill" : "xmark.circle.fill")
                         .foregroundColor(option.id == question.correctOption ? .green : .red)
-                        .font(.system(size: 20))
+                        .font(.system(size: 18))
                 }
             }
-            .padding(16)
+            .padding(12)
             .background(getOptionBackground(optionId: option.id, question: question))
-            .cornerRadius(12)
+            .cornerRadius(10)
             .overlay(
-                RoundedRectangle(cornerRadius: 12)
+                RoundedRectangle(cornerRadius: 10)
                     .stroke(getOptionBorder(optionId: option.id, question: question), lineWidth: 2)
             )
         }
@@ -296,34 +295,32 @@ struct ScenarioRunnerView: View {
     // MARK: - Navigation Buttons
     
     private var navigationButtons: some View {
-        HStack(spacing: 16) {
-            // Previous Button
+        HStack(spacing: 12) {
             Button(action: previousQuestion) {
-                HStack {
+                HStack(spacing: 4) {
                     Image(systemName: "chevron.left")
-                    Text("Previous")
+                    Text("Prev")
                 }
-                .font(.system(size: 16, weight: .semibold))
+                .font(.system(size: 15, weight: .semibold))
                 .foregroundColor(currentQuestionIndex > 0 ? .white : .gray)
                 .frame(maxWidth: .infinity)
-                .padding(.vertical, 14)
+                .padding(.vertical, 11)
                 .background(currentQuestionIndex > 0 ? Color.rdBrand : Color.gray.opacity(0.3))
-                .cornerRadius(12)
+                .cornerRadius(10)
             }
             .disabled(currentQuestionIndex == 0)
             
-            // Next Button
             Button(action: nextQuestion) {
-                HStack {
+                HStack(spacing: 4) {
                     Text("Next")
                     Image(systemName: "chevron.right")
                 }
-                .font(.system(size: 16, weight: .semibold))
+                .font(.system(size: 15, weight: .semibold))
                 .foregroundColor(currentQuestionIndex < questions.count - 1 ? .white : .gray)
                 .frame(maxWidth: .infinity)
-                .padding(.vertical, 14)
+                .padding(.vertical, 11)
                 .background(currentQuestionIndex < questions.count - 1 ? Color.rdBrand : Color.gray.opacity(0.3))
-                .cornerRadius(12)
+                .cornerRadius(10)
             }
             .disabled(currentQuestionIndex >= questions.count - 1)
         }
@@ -332,38 +329,31 @@ struct ScenarioRunnerView: View {
     // MARK: - Scenario End Buttons
     
     private var scenarioEndButtons: some View {
-        VStack(spacing: 10) {
-            // Score summary line
-            Text("Score: \(score)/\(questions.count)")
-                .font(.system(size: 15, weight: .semibold))
-                .foregroundColor(.secondary)
+        HStack(spacing: 10) {
+            Button(action: retryScenario) {
+                HStack(spacing: 4) {
+                    Image(systemName: "arrow.counterclockwise")
+                    Text("Retry")
+                }
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundColor(.rdBrand)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 10)
+                .background(Color.rdBrand.opacity(0.12))
+                .cornerRadius(10)
+            }
             
-            HStack(spacing: 12) {
-                Button(action: retryScenario) {
-                    HStack(spacing: 6) {
-                        Image(systemName: "arrow.counterclockwise")
-                        Text("Retry")
-                    }
-                    .font(.system(size: 15, weight: .semibold))
-                    .foregroundColor(.rdBrand)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 13)
-                    .background(Color.rdBrand.opacity(0.12))
-                    .cornerRadius(12)
+            Button(action: loadNextScenario) {
+                HStack(spacing: 4) {
+                    Text("Next Scenario")
+                    Image(systemName: "arrow.right.circle.fill")
                 }
-                
-                Button(action: loadNextScenario) {
-                    HStack(spacing: 6) {
-                        Text("Next Scenario")
-                        Image(systemName: "arrow.right.circle.fill")
-                    }
-                    .font(.system(size: 15, weight: .bold))
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 13)
-                    .background(Color.rdSuccess)
-                    .cornerRadius(12)
-                }
+                .font(.system(size: 14, weight: .bold))
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 10)
+                .background(Color.rdSuccess)
+                .cornerRadius(10)
             }
         }
     }
@@ -650,12 +640,23 @@ struct ScenarioRunnerView: View {
                     return
                 }
                 
-                // Pick a random scenario
-                let randomDocument = documents.randomElement()!
+                // Filter out already-seen scenarios
+                var unseen = documents.filter { !self.seenScenarioIDs.contains($0.documentID) }
+                
+                // If all have been seen, reset and allow all again
+                if unseen.isEmpty {
+                    self.seenScenarioIDs.removeAll()
+                    unseen = documents
+                    AppLogger.data.info("All scenarios seen – resetting cycle")
+                }
+                
+                // Pick a random unseen scenario
+                let randomDocument = unseen.randomElement()!
                 
                 if let fetchedScenario = Scenario(document: randomDocument) {
+                    self.seenScenarioIDs.insert(fetchedScenario.id)
                     self.scenario = fetchedScenario
-                    AppLogger.data.info("Loaded scenario: \(fetchedScenario.id)")
+                    AppLogger.data.info("Loaded scenario: \(fetchedScenario.id) (seen \(self.seenScenarioIDs.count)/\(documents.count))")
                     
                     // Fetch linked questions
                     fetchQuestions(for: fetchedScenario.id)
@@ -716,6 +717,13 @@ struct ScenarioRunnerView: View {
         }
         
         answeredQuestions.insert(currentQuestionIndex)
+        
+        // Auto-collapse patient info to keep focus on feedback
+        if patientExpanded {
+            withAnimation(.spring(response: 0.3)) {
+                patientExpanded = false
+            }
+        }
         
         withAnimation(.spring()) {
             showFeedback = true

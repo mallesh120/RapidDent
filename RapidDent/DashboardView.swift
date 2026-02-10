@@ -32,14 +32,19 @@ struct DashboardView: View {
                 
                 // Stats Cards
                 VStack(spacing: 20) {
-                    // Questions Completed
-                    StatCard(
-                        icon: "checkmark.circle.fill",
-                        title: "Questions Done",
-                        value: "\(progressManager.questionsCompleted)",
-                        color: .green,
-                        accentColor: .rdSuccess
-                    )
+                    // Correct Answers – tappable to review
+                    NavigationLink(destination: CorrectAnswersView()) {
+                        StatCard(
+                            icon: "checkmark.circle.fill",
+                            title: "Correct",
+                            value: "\(progressManager.questionsCorrect)",
+                            color: .green,
+                            accentColor: .rdSuccess,
+                            showChevron: true
+                        )
+                    }
+                    .disabled(progressManager.correctIDs.isEmpty)
+                    .opacity(progressManager.correctIDs.isEmpty ? 0.5 : 1.0)
                     
                     // Questions Needing Review (wrapped in NavigationLink)
                     NavigationLink(destination: ContentView(reviewMode: true)) {
@@ -48,7 +53,8 @@ struct DashboardView: View {
                             title: "Needs Review",
                             value: "\(progressManager.questionsNeedingReview)",
                             color: .orange,
-                            accentColor: .rdWarning
+                            accentColor: .rdWarning,
+                            showChevron: true
                         )
                     }
                     .disabled(progressManager.wrongIDs.isEmpty)
@@ -137,6 +143,7 @@ struct StatCard: View {
     let value: String
     let color: Color
     let accentColor: Color
+    var showChevron: Bool = false
     
     var body: some View {
         HStack(spacing: 20) {
@@ -160,6 +167,12 @@ struct StatCard: View {
             }
             
             Spacer()
+            
+            if showChevron {
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundColor(accentColor.opacity(0.6))
+            }
         }
         .padding(20)
         .background(Color.white)

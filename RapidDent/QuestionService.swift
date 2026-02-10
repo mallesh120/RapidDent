@@ -12,6 +12,14 @@ import os
 import FirebaseFirestore
 #endif
 
+private extension Array {
+    func chunked(into size: Int) -> [[Element]] {
+        stride(from: 0, to: count, by: size).map {
+            Array(self[$0..<Swift.min($0 + size, count)])
+        }
+    }
+}
+
 final class QuestionService {
     static let shared = QuestionService()
 
@@ -132,6 +140,48 @@ final class QuestionService {
                 AppLogger.data.info("Loaded \(questions.count) questions for scenario \(scenarioId)")
                 completion(.success(questions))
             }
+#else
+        completion(.failure(ServiceError.firebaseUnavailable))
+#endif
+    }
+
+    // MARK: - Fetch by IDs
+
+    /// Fetches questions whose document IDs are in the given set.
+    /// Firestore `whereField(in:)` supports max 30 values per call, so we batch.
+    func fetchQuestionsByIDs(_ ids: Set<String>, completion: @escaping (Result<[Question], Error>) -> Void) {
+#if canImport(FirebaseFirestore)
+        guard !ids.isEmpty else {
+            completion(.success([]))
+            return
+        }
+
+        let batches = Array(ids).chunked(into: 30)
+        var allQuestions: [Question] = []
+        var pendingBatches = batches.count
+        var firstError: Error?
+
+        for batch in batches {
+            db.collection("questions")
+                .whereField(FieldPath.documentID(), in: batch)
+                .getDocuments { snapshot, error in
+                    if let error = error, firstError == nil {
+                        firstError = error
+                    }
+                    if let docs = snapshot?.documents {
+                        let parsed = docs.compactMap { Question(document: $0) }
+                        allQuestions.append(contentsOf: parsed)
+                    }
+                    pendingBatches -= 1
+                    if pendingBatches == 0 {
+                        if let error = firstError {
+                            completion(.failure(error))
+                        } else {
+                            completion(.success(allQuestions))
+                        }
+                    }
+                }
+        }
 #else
         completion(.failure(ServiceError.firebaseUnavailable))
 #endif

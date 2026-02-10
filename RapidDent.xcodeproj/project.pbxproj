@@ -23,6 +23,7 @@
 		00A918102F160F5E00440BEA /* PatientBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D52F160F5E00440BEA /* PatientBoxView.swift */; };
 		00A918122F160F5E00440BEA /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917CF2F160F5E00440BEA /* DashboardView.swift */; };
 		00A918132F160F5E00440BEA /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917CD2F160F5E00440BEA /* CardView.swift */; };
+		CC000001CCCC000100000001 /* CorrectAnswersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC000001CCCC000000000001 /* CorrectAnswersView.swift */; };
 		00A918142F160F5E00440BEA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917CE2F160F5E00440BEA /* ContentView.swift */; };
 		00A918152F160F5E00440BEA /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D72F160F5E00440BEA /* Question.swift */; };
 		00A918162F160F5E00440BEA /* ScenarioRunnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D92F160F5E00440BEA /* ScenarioRunnerView.swift */; };
@@ -62,6 +63,7 @@
 		00A917CC2F160F5E00440BEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00A917CD2F160F5E00440BEA /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		00A917CE2F160F5E00440BEA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CC000001CCCC000000000001 /* CorrectAnswersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectAnswersView.swift; sourceTree = "<group>"; };
 		00A917CF2F160F5E00440BEA /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		00A917D02F160F5E00440BEA /* DentalExamPrepApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DentalExamPrepApp.swift; sourceTree = "<group>"; };
 		00A917D12F160F5E00440BEA /* ExamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamView.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				00A917CC2F160F5E00440BEA /* Assets.xcassets */,
 				00A917CD2F160F5E00440BEA /* CardView.swift */,
 				00A917CE2F160F5E00440BEA /* ContentView.swift */,
+				CC000001CCCC000000000001 /* CorrectAnswersView.swift */,
 				00A917CF2F160F5E00440BEA /* DashboardView.swift */,
 				00A917D02F160F5E00440BEA /* DentalExamPrepApp.swift */,
 				00A917D12F160F5E00440BEA /* ExamView.swift */,
@@ -347,6 +350,7 @@
 				AA000001AAAA000100000002 /* AppLogger.swift in Sources */,
 				AA000001AAAA000100000003 /* QuestionService.swift in Sources */,
 				AA000001AAAA000100000004 /* RemoteImageView.swift in Sources */,
+				CC000001CCCC000100000001 /* CorrectAnswersView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,7 +531,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 26.2;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.manya.RapidDent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -572,7 +576,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 26.2;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.manya.RapidDent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;

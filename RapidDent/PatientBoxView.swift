@@ -9,49 +9,56 @@ import SwiftUI
 
 struct PatientBoxView: View {
     let scenario: Scenario
+    @Binding var isExpanded: Bool
     
     var body: some View {
         VStack(spacing: 0) {
-            // Header with patient name and demographics
-            HStack {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(scenario.patientName)
-                        .font(.system(size: 22, weight: .bold))
-                        .foregroundColor(.primary)
+            // Tappable header – always visible
+            Button(action: { withAnimation(.spring(response: 0.35)) { isExpanded.toggle() } }) {
+                HStack(spacing: 10) {
+                    Image(systemName: "heart.text.square.fill")
+                        .font(.system(size: 28))
+                        .foregroundColor(.rdBrand)
                     
-                    HStack(spacing: 12) {
-                        Label("\(scenario.age) yo", systemImage: "person.fill")
-                            .font(.system(size: 14))
-                            .foregroundColor(.secondary)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(scenario.patientName)
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundColor(.primary)
                         
-                        Label(scenario.gender, systemImage: scenario.gender.lowercased() == "male" ? "person.fill" : "person.fill")
-                            .font(.system(size: 14))
+                        Text("\(scenario.age) yo · \(scenario.gender) · \(scenario.chiefComplaint)")
+                            .font(.system(size: 13))
                             .foregroundColor(.secondary)
+                            .lineLimit(1)
                     }
+                    
+                    Spacer()
+                    
+                    Image(systemName: "chevron.down")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundColor(.secondary)
+                        .rotationEffect(.degrees(isExpanded ? 180 : 0))
                 }
-                
-                Spacer()
-                
-                Image(systemName: "heart.text.square.fill")
-                    .font(.system(size: 40))
-                    .foregroundColor(.rdBrand)
+                .padding(.horizontal, 14)
+                .padding(.vertical, 10)
+                .background(Color(uiColor: .systemGray6))
             }
-            .padding(16)
-            .background(Color(uiColor: .systemGray6))
+            .buttonStyle(.plain)
+            .accessibilityLabel("Patient info: \(scenario.patientName). Tap to \(isExpanded ? "collapse" : "expand")")
             
-            Divider()
-            
-            // Scrollable content
-            ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
+            // Expandable detail content (no inner scroll – parent controls scroll)
+            if isExpanded {
+                Divider()
+                
+                VStack(alignment: .leading, spacing: 14) {
                     // Clinical Image (if available)
                     if let mediaUrl = scenario.mediaUrl, !mediaUrl.isEmpty {
-                        VStack(alignment: .leading, spacing: 12) {
-                            HStack(spacing: 8) {
+                        VStack(alignment: .leading, spacing: 8) {
+                            HStack(spacing: 6) {
                                 Image(systemName: "photo.fill")
                                     .foregroundColor(.cyan)
+                                    .font(.system(size: 14))
                                 Text("Clinical Image")
-                                    .font(.system(size: 16, weight: .semibold))
+                                    .font(.system(size: 14, weight: .semibold))
                             }
                             
                             let imageUrl = convertGoogleDriveUrl(mediaUrl)
@@ -59,46 +66,32 @@ struct PatientBoxView: View {
                             AsyncImage(url: URL(string: imageUrl)) { phase in
                                 switch phase {
                                 case .empty:
-                                    VStack(spacing: 12) {
+                                    HStack(spacing: 8) {
                                         ProgressView()
-                                            .scaleEffect(1.2)
                                         Text("Loading image...")
-                                            .font(.system(size: 14))
+                                            .font(.system(size: 13))
                                             .foregroundColor(.gray)
                                     }
-                                    .frame(maxWidth: .infinity, minHeight: 200)
+                                    .frame(maxWidth: .infinity, minHeight: 120)
                                     .background(Color.gray.opacity(0.1))
-                                    .cornerRadius(12)
+                                    .cornerRadius(10)
                                 case .success(let image):
                                     image
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
-                                        .frame(maxWidth: .infinity)
-                                        .cornerRadius(12)
-                                        .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
-                                case .failure(let error):
-                                    VStack(spacing: 12) {
+                                        .frame(maxWidth: .infinity, maxHeight: 180)
+                                        .cornerRadius(10)
+                                case .failure:
+                                    HStack(spacing: 8) {
                                         Image(systemName: "photo.badge.exclamationmark")
-                                            .font(.system(size: 40))
                                             .foregroundColor(.orange)
-                                        Text("Failed to load image")
-                                            .font(.system(size: 14, weight: .medium))
+                                        Text("Image unavailable")
+                                            .font(.system(size: 13))
                                             .foregroundColor(.gray)
-                                        Text(error.localizedDescription)
-                                            .font(.system(size: 12))
-                                            .foregroundColor(.gray)
-                                            .multilineTextAlignment(.center)
-                                            .padding(.horizontal)
-                                        Text("URL: \(imageUrl)")
-                                            .font(.system(size: 10))
-                                            .foregroundColor(.gray)
-                                            .lineLimit(2)
-                                            .padding(.horizontal)
                                     }
-                                    .frame(maxWidth: .infinity, minHeight: 200)
+                                    .frame(maxWidth: .infinity, minHeight: 60)
                                     .background(Color.orange.opacity(0.1))
-                                    .cornerRadius(12)
-                                    .padding(.horizontal, 8)
+                                    .cornerRadius(10)
                                 @unknown default:
                                     EmptyView()
                                 }
@@ -106,60 +99,20 @@ struct PatientBoxView: View {
                         }
                     }
                     
-                    // Chief Complaint
-                    InfoSection(
-                        title: "Chief Complaint",
-                        content: scenario.chiefComplaint,
-                        icon: "text.bubble.fill",
-                        color: .red
-                    )
-                    
-                    // Vital Signs
-                    InfoSection(
-                        title: "Vital Signs",
-                        content: scenario.vitalSigns,
-                        icon: "waveform.path.ecg",
-                        color: .orange
-                    )
-                    
-                    // Medical History
-                    InfoSection(
-                        title: "Medical History",
-                        content: scenario.medicalHistory,
-                        icon: "cross.case.fill",
-                        color: .blue
-                    )
-                    
-                    // Medications
-                    InfoSection(
-                        title: "Medications",
-                        content: scenario.medications,
-                        icon: "pills.fill",
-                        color: .green
-                    )
-                    
-                    // Allergies
-                    InfoSection(
-                        title: "Allergies",
-                        content: scenario.allergies,
-                        icon: "exclamationmark.triangle.fill",
-                        color: .yellow
-                    )
-                    
-                    // Clinical Findings
-                    InfoSection(
-                        title: "Clinical Findings",
-                        content: scenario.clinicalFindings,
-                        icon: "stethoscope",
-                        color: .purple
-                    )
+                    InfoSection(title: "Chief Complaint", content: scenario.chiefComplaint, icon: "text.bubble.fill", color: .red)
+                    InfoSection(title: "Vital Signs", content: scenario.vitalSigns, icon: "waveform.path.ecg", color: .orange)
+                    InfoSection(title: "Medical History", content: scenario.medicalHistory, icon: "cross.case.fill", color: .blue)
+                    InfoSection(title: "Medications", content: scenario.medications, icon: "pills.fill", color: .green)
+                    InfoSection(title: "Allergies", content: scenario.allergies, icon: "exclamationmark.triangle.fill", color: .yellow)
+                    InfoSection(title: "Clinical Findings", content: scenario.clinicalFindings, icon: "stethoscope", color: .purple)
                 }
-                .padding(16)
+                .padding(14)
+                .transition(.opacity.combined(with: .move(edge: .top)))
             }
         }
         .background(Color(uiColor: .systemBackground))
         .cornerRadius(12)
-        .shadow(color: .black.opacity(0.1), radius: 8, x: 0, y: 4)
+        .shadow(color: .black.opacity(0.08), radius: 6, x: 0, y: 3)
     }
 }
 
