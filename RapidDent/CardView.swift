@@ -32,8 +32,6 @@ struct CardView: View {
                 
                 Spacer()
                 
-<<<<<<< HEAD
-=======
                 // Question image (if available)
                 if let imageUrl = question.imageUrl {
                     RemoteImageView(url: imageUrl)
@@ -42,7 +40,6 @@ struct CardView: View {
                         .padding(.bottom, 16)
                 }
                 
->>>>>>> 12d8245 (version 2)
                 // Question text
                 Text(question.questionText)
                     .font(.system(size: 24, weight: .semibold))
@@ -121,12 +118,9 @@ struct CardView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .offset(x: offset.width, y: offset.height * 0.4)
         .rotationEffect(.degrees(Double(offset.width / 20)))
-<<<<<<< HEAD
-=======
         .accessibilityElement(children: .combine)
         .accessibilityLabel("Question: \(question.questionText)")
         .accessibilityHint("Swipe right for True, left for False")
->>>>>>> 12d8245 (version 2)
         .gesture(
             DragGesture()
                 .onChanged { gesture in
@@ -172,10 +166,7 @@ struct CardView: View {
     }
     
     private func swipeRight() {
-<<<<<<< HEAD
-=======
         HapticManager.impact(.light)
->>>>>>> 12d8245 (version 2)
         withAnimation(.easeOut(duration: 0.3)) {
             offset = CGSize(width: 500, height: 0)
         }
@@ -186,10 +177,7 @@ struct CardView: View {
     }
     
     private func swipeLeft() {
-<<<<<<< HEAD
-=======
         HapticManager.impact(.light)
->>>>>>> 12d8245 (version 2)
         withAnimation(.easeOut(duration: 0.3)) {
             offset = CGSize(width: -500, height: 0)
         }

@@ -34,6 +34,7 @@ platform :ios do
       project: PROJECT,
       scheme: SCHEME,
       configuration: "Release",
+      sdk: "iphoneos",
       clean: true,
       output_directory: OUTPUT_DIR,
       output_name: "RapidDent.ipa",
@@ -90,10 +91,7 @@ platform :ios do
 
   desc "Build & upload to TestFlight"
   lane :beta do
-    increment_build_number(
-      build_number: Time.now.strftime("%Y%m%d%H%M"),
-      xcodeproj: PROJECT
-    )
+    build_number = Time.now.strftime("%Y%m%d%H%M")
 
     gym(
       project: PROJECT,
@@ -102,33 +100,34 @@ platform :ios do
       clean: true,
       output_directory: OUTPUT_DIR,
       output_name: "RapidDent.ipa",
-      export_method: "app-store"
+      export_method: "app-store",
+      destination: "generic/platform=iOS",
+      xcargs: "CURRENT_PROJECT_VERSION=#{build_number}"
     )
 
     upload_to_testflight(
       skip_waiting_for_build_processing: true
     )
 
-    UI.success("🚀 Uploaded to TestFlight")
+    UI.success("🚀 Uploaded to TestFlight (build #{build_number})")
   end
 
   # ── App Store Release ──────────────────────────────
 
   desc "Build & submit to App Store for review"
   lane :release do
-    increment_build_number(
-      build_number: Time.now.strftime("%Y%m%d%H%M"),
-      xcodeproj: PROJECT
-    )
+    build_number = Time.now.strftime("%Y%m%d%H%M")
 
     gym(
       project: PROJECT,
       scheme: SCHEME,
       configuration: "Release",
+      sdk: "iphoneos",
       clean: true,
       output_directory: OUTPUT_DIR,
       output_name: "RapidDent.ipa",
-      export_method: "app-store"
+      export_method: "app-store",
+      xcargs: "CURRENT_PROJECT_VERSION=#{build_number}"
     )
 
     upload_to_app_store(
@@ -137,7 +136,7 @@ platform :ios do
       skip_metadata: true
     )
 
-    UI.success("🎉 Submitted to App Store review")
+    UI.success("🎉 Submitted to App Store review (build #{build_number})")
   end
 
   # ── Convenience ────────────────────────────────────

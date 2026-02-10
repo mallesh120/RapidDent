@@ -1,0 +1,18 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Questions collection – read-only for all authenticated & anonymous users
+    match /questions/{questionId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Scenarios collection – read-only
+    match /scenarios/{scenarioId} {
+      allow read: if true;
+      allow write: if false;
+    }
+  }
+}

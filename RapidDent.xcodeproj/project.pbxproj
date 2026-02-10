@@ -7,42 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BB000001BBBB000100000001 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB000001BBBB000000000001 /* GoogleService-Info.plist */; };
-		BB000001BBBB000100000002 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB000001BBBB000000000001 /* GoogleService-Info.plist */; };
-		BB000001BBBB000100000003 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB000001BBBB000000000001 /* GoogleService-Info.plist */; };
-		00A917E12F160F5E00440BEA /* DentalExamPrepApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D02F160F5E00440BEA /* DentalExamPrepApp.swift */; };
-		00A917E22F160F5E00440BEA /* ExamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D12F160F5E00440BEA /* ExamView.swift */; };
-		00A917E32F160F5E00440BEA /* ProgressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D62F160F5E00440BEA /* ProgressManager.swift */; };
-		00A917E42F160F5E00440BEA /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D22F160F5E00440BEA /* FeedbackView.swift */; };
-		00A917E52F160F5E00440BEA /* ScoreReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917DA2F160F5E00440BEA /* ScoreReportView.swift */; };
 		00A917E62F160F5E00440BEA /* DentalExamPrepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917DC2F160F5E00440BEA /* DentalExamPrepTests.swift */; };
-		00A917E72F160F5E00440BEA /* Scenario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D82F160F5E00440BEA /* Scenario.swift */; };
-		00A917E82F160F5E00440BEA /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D42F160F5E00440BEA /* MainMenuView.swift */; };
-		00A917E92F160F5E00440BEA /* DentalExamPrepUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917DF2F160F5E00440BEA /* DentalExamPrepUITestsLaunchTests.swift */; };
-		00A917EA2F160F5E00440BEA /* PatientBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D52F160F5E00440BEA /* PatientBoxView.swift */; };
-		00A917EB2F160F5E00440BEA /* DentalExamPrepUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917DE2F160F5E00440BEA /* DentalExamPrepUITests.swift */; };
-		00A917EC2F160F5E00440BEA /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917CF2F160F5E00440BEA /* DashboardView.swift */; };
-		00A917ED2F160F5E00440BEA /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917CD2F160F5E00440BEA /* CardView.swift */; };
-		00A917EE2F160F5E00440BEA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917CE2F160F5E00440BEA /* ContentView.swift */; };
-		00A917EF2F160F5E00440BEA /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D72F160F5E00440BEA /* Question.swift */; };
-		00A917F02F160F5E00440BEA /* ScenarioRunnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D92F160F5E00440BEA /* ScenarioRunnerView.swift */; };
 		00A917F12F160F5E00440BEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00A917CC2F160F5E00440BEA /* Assets.xcassets */; };
-		00A917F32F160F5E00440BEA /* DentalExamPrepApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D02F160F5E00440BEA /* DentalExamPrepApp.swift */; };
-		00A917F42F160F5E00440BEA /* ExamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D12F160F5E00440BEA /* ExamView.swift */; };
-		00A917F52F160F5E00440BEA /* ProgressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D62F160F5E00440BEA /* ProgressManager.swift */; };
-		00A917F62F160F5E00440BEA /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D22F160F5E00440BEA /* FeedbackView.swift */; };
-		00A917F72F160F5E00440BEA /* ScoreReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917DA2F160F5E00440BEA /* ScoreReportView.swift */; };
-		00A917F82F160F5E00440BEA /* DentalExamPrepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917DC2F160F5E00440BEA /* DentalExamPrepTests.swift */; };
-		00A917F92F160F5E00440BEA /* Scenario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D82F160F5E00440BEA /* Scenario.swift */; };
-		00A917FA2F160F5E00440BEA /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D42F160F5E00440BEA /* MainMenuView.swift */; };
 		00A917FB2F160F5E00440BEA /* DentalExamPrepUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917DF2F160F5E00440BEA /* DentalExamPrepUITestsLaunchTests.swift */; };
-		00A917FC2F160F5E00440BEA /* PatientBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D52F160F5E00440BEA /* PatientBoxView.swift */; };
 		00A917FD2F160F5E00440BEA /* DentalExamPrepUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917DE2F160F5E00440BEA /* DentalExamPrepUITests.swift */; };
-		00A917FE2F160F5E00440BEA /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917CF2F160F5E00440BEA /* DashboardView.swift */; };
-		00A917FF2F160F5E00440BEA /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917CD2F160F5E00440BEA /* CardView.swift */; };
-		00A918002F160F5E00440BEA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917CE2F160F5E00440BEA /* ContentView.swift */; };
-		00A918012F160F5E00440BEA /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D72F160F5E00440BEA /* Question.swift */; };
-		00A918022F160F5E00440BEA /* ScenarioRunnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D92F160F5E00440BEA /* ScenarioRunnerView.swift */; };
 		00A918032F160F5E00440BEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00A917CC2F160F5E00440BEA /* Assets.xcassets */; };
 		00A918052F160F5E00440BEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00A917CC2F160F5E00440BEA /* Assets.xcassets */; };
 		00A918072F160F5E00440BEA /* DentalExamPrepApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D02F160F5E00440BEA /* DentalExamPrepApp.swift */; };
@@ -50,12 +18,9 @@
 		00A918092F160F5E00440BEA /* ProgressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D62F160F5E00440BEA /* ProgressManager.swift */; };
 		00A9180A2F160F5E00440BEA /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D22F160F5E00440BEA /* FeedbackView.swift */; };
 		00A9180B2F160F5E00440BEA /* ScoreReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917DA2F160F5E00440BEA /* ScoreReportView.swift */; };
-		00A9180C2F160F5E00440BEA /* DentalExamPrepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917DC2F160F5E00440BEA /* DentalExamPrepTests.swift */; };
 		00A9180D2F160F5E00440BEA /* Scenario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D82F160F5E00440BEA /* Scenario.swift */; };
 		00A9180E2F160F5E00440BEA /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D42F160F5E00440BEA /* MainMenuView.swift */; };
-		00A9180F2F160F5E00440BEA /* DentalExamPrepUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917DF2F160F5E00440BEA /* DentalExamPrepUITestsLaunchTests.swift */; };
 		00A918102F160F5E00440BEA /* PatientBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917D52F160F5E00440BEA /* PatientBoxView.swift */; };
-		00A918112F160F5E00440BEA /* DentalExamPrepUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917DE2F160F5E00440BEA /* DentalExamPrepUITests.swift */; };
 		00A918122F160F5E00440BEA /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917CF2F160F5E00440BEA /* DashboardView.swift */; };
 		00A918132F160F5E00440BEA /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917CD2F160F5E00440BEA /* CardView.swift */; };
 		00A918142F160F5E00440BEA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A917CE2F160F5E00440BEA /* ContentView.swift */; };
@@ -71,14 +36,9 @@
 		AA000001AAAA000100000002 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001AAAA000000000002 /* AppLogger.swift */; };
 		AA000001AAAA000100000003 /* QuestionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001AAAA000000000003 /* QuestionService.swift */; };
 		AA000001AAAA000100000004 /* RemoteImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001AAAA000000000004 /* RemoteImageView.swift */; };
-		AA000002AAAA000100000001 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001AAAA000000000001 /* Theme.swift */; };
-		AA000002AAAA000100000002 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001AAAA000000000002 /* AppLogger.swift */; };
-		AA000002AAAA000100000003 /* QuestionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001AAAA000000000003 /* QuestionService.swift */; };
-		AA000002AAAA000100000004 /* RemoteImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001AAAA000000000004 /* RemoteImageView.swift */; };
-		AA000003AAAA000100000001 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001AAAA000000000001 /* Theme.swift */; };
-		AA000003AAAA000100000002 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001AAAA000000000002 /* AppLogger.swift */; };
-		AA000003AAAA000100000003 /* QuestionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001AAAA000000000003 /* QuestionService.swift */; };
-		AA000003AAAA000100000004 /* RemoteImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001AAAA000000000004 /* RemoteImageView.swift */; };
+		BB000001BBBB000100000001 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB000001BBBB000000000001 /* GoogleService-Info.plist */; };
+		BB000001BBBB000100000002 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB000001BBBB000000000001 /* GoogleService-Info.plist */; };
+		BB000001BBBB000100000003 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB000001BBBB000000000001 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,17 +73,17 @@
 		00A917D82F160F5E00440BEA /* Scenario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scenario.swift; sourceTree = "<group>"; };
 		00A917D92F160F5E00440BEA /* ScenarioRunnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenarioRunnerView.swift; sourceTree = "<group>"; };
 		00A917DA2F160F5E00440BEA /* ScoreReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreReportView.swift; sourceTree = "<group>"; };
-		AA000001AAAA000000000001 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		AA000001AAAA000000000002 /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
-		AA000001AAAA000000000003 /* QuestionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionService.swift; sourceTree = "<group>"; };
-		AA000001AAAA000000000004 /* RemoteImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageView.swift; sourceTree = "<group>"; };
-		BB000001BBBB000000000001 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		00A917DC2F160F5E00440BEA /* DentalExamPrepTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DentalExamPrepTests.swift; sourceTree = "<group>"; };
 		00A917DE2F160F5E00440BEA /* DentalExamPrepUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DentalExamPrepUITests.swift; sourceTree = "<group>"; };
 		00A917DF2F160F5E00440BEA /* DentalExamPrepUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DentalExamPrepUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		00EC43922F1333CD00801024 /* RapidDent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RapidDent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00EC439F2F1333D000801024 /* RapidDentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RapidDentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00EC43A92F1333D000801024 /* RapidDentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RapidDentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA000001AAAA000000000001 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		AA000001AAAA000000000002 /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
+		AA000001AAAA000000000003 /* QuestionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionService.swift; sourceTree = "<group>"; };
+		AA000001AAAA000000000004 /* RemoteImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageView.swift; sourceTree = "<group>"; };
+		BB000001BBBB000000000001 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -567,7 +527,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 26.2;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.manya.RapidDent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -612,7 +572,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 26.2;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.manya.RapidDent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -634,7 +594,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 202602061054;
 				DEVELOPMENT_TEAM = U8B97NVD7G;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
@@ -660,7 +620,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 202602061054;
 				DEVELOPMENT_TEAM = U8B97NVD7G;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
@@ -685,7 +645,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 202602061054;
 				DEVELOPMENT_TEAM = U8B97NVD7G;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
@@ -710,7 +670,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 202602061054;
 				DEVELOPMENT_TEAM = U8B97NVD7G;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
