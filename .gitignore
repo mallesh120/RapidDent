@@ -58,5 +58,11 @@ Pods/
 .Trashes
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
+## Secrets / Credentials – NEVER commit these
 admin/serviceAccountKey.json
+admin/.env
 admin/node_modules
+
+## Apple App Store Connect API keys (Fastlane)
+private_keys/
+*.p8
