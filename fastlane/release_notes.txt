@@ -1,0 +1,10 @@
+### RapidDent v3.0 Release Notes
+
+What's New:
+- Enhanced Clinical Scenarios: Interactive Patient Box with auto-collapse, single scroll layout, and smarter scenario cycling.
+* Review Mastered Content: New view to revisit correctly answered questions and explanations.
+* Dashboard Updates: Tappable stat cards to review progress.
+
+Improvements: 
+- Added haptic feedback and accessibility labels to CardView.
+- Build stability fixes and API Key authentication for TestFlight.

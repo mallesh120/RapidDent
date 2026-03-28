@@ -58,3 +58,5 @@ Pods/
 .Trashes
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
+admin/serviceAccountKey.json
+admin/node_modules

@@ -1,0 +1,51 @@
+# data.yaml
+# Paste your scenarios and rapid fire questions here.
+# You can generate more of these using ChatGPT/Claude/Gemini!
+
+scenarios:
+  - id: "scenario_endo_001"
+    patient_profile:
+      age: 45
+      gender: "Male"
+      chief_complaint: "Severe, lingering pain in the lower right jaw, especially after drinking cold water."
+      vitals: "BP: 120/80, HR: 72 bpm"
+      med_history:
+        - "No significant medical history"
+      medications:
+        - "None"
+      allergies:
+        - "Penicillin"
+    clinical_notes: "Tooth #30 exhibits deep occlusal caries. Cold test produces sharp pain lasting for 2 minutes after removal of the stimulus. EPT is positive. Percussion is mildly sensitive."
+    media_url: ""
+
+questions:
+  - id: "q_endo_001_1"
+    question_text: "What is the most likely pulpal diagnosis for Tooth #30?"
+    type: "RAPID_FIRE"
+    scenario_id: "scenario_endo_001"   # Omit or leave empty if it's a standalone question
+    explanation: "Lingering pain to cold indicates Irreversible Pulpitis. Reversible pulpitis does not linger after the stimulus is removed."
+    options:
+      - id: "A"
+        text: "Symptomatic Irreversible Pulpitis"
+        is_correct: true
+      - id: "B"
+        text: "Reversible Pulpitis"
+        is_correct: false
+      - id: "C"
+        text: "Pulp Necrosis"
+        is_correct: false
+      - id: "D"
+        text: "Asymptomatic Irreversible Pulpitis"
+        is_correct: false
+
+  - id: "q_rf_002"
+    question_text: "Amalgam restorations expand when contaminated with moisture during condensation, mostly due to the presence of Copper."
+    type: "RAPID_FIRE"
+    explanation: "False! Delayed expansion is caused by Zinc reacting with water to form hydrogen gas, not Copper."
+    options:
+      - id: "A"
+        text: "True"
+        is_correct: false
+      - id: "B"
+        text: "False"
+        is_correct: true

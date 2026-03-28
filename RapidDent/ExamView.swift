@@ -8,9 +8,6 @@
 import SwiftUI
 import Combine
 import os
-#if canImport(FirebaseFirestore)
-import FirebaseFirestore
-#endif
 
 struct ExamView: View {
     @State private var questions: [Question] = []
@@ -24,10 +21,6 @@ struct ExamView: View {
     @State private var timerSubscription: AnyCancellable?
     
     @Environment(\.dismiss) var dismiss
-    
-#if canImport(FirebaseFirestore)
-    private let db = Firestore.firestore()
-#endif
     
     var body: some View {
         ZStack {
@@ -216,44 +209,27 @@ struct ExamView: View {
     // MARK: - Data Fetching
     
     private func fetchExamQuestions() {
-#if canImport(FirebaseFirestore)
         isLoading = true
         errorMessage = nil
         
-        db.collection("questions")
-            .whereField("type", isEqualTo: "RAPID_FIRE")
-            .getDocuments { snapshot, error in
-                isLoading = false
+        QuestionService.shared.fetchExamQuestions(count: 30) { result in
+            DispatchQueue.main.async {
+                self.isLoading = false
                 
-                if let error = error {
-                    errorMessage = "Failed to load exam questions: \(error.localizedDescription)"
-                    AppLogger.data.error("Error fetching exam questions: \(error.localizedDescription)")
-                    return
-                }
-                
-                guard let documents = snapshot?.documents else {
-                    errorMessage = "No questions found in database"
-                    AppLogger.data.warning("No exam documents found")
-                    return
-                }
-                
-                let fetchedQuestions = documents.compactMap { Question(document: $0) }
-                
-                if fetchedQuestions.count < 30 {
-                    errorMessage = "Not enough questions available. Need at least 30 questions."
-                    AppLogger.data.warning("Only \(fetchedQuestions.count) exam questions available")
-                } else {
-                    // Shuffle and take first 30
-                    questions = Array(fetchedQuestions.shuffled().prefix(30))
+                switch result {
+                case .success(let fetchedQuestions):
+                    self.questions = fetchedQuestions
                     AppLogger.data.info("Mock Exam ready with 30 questions")
+                case .failure(let error):
+                    if let serviceError = error as? QuestionService.ServiceError, case QuestionService.ServiceError.insufficientQuestions(let available, _) = serviceError {
+                        self.errorMessage = "Not enough questions available. Found \(available), need at least 30."
+                    } else {
+                        self.errorMessage = "Failed to load exam questions: \(error.localizedDescription)"
+                    }
+                    AppLogger.data.error("Error fetching exam questions: \(error.localizedDescription)")
                 }
             }
-#else
-        // Fallback when FirebaseFirestore isn't available
-        isLoading = false
-        errorMessage = "Firebase is not configured. Please ensure Firebase is properly set up."
-        AppLogger.data.warning("Firebase not available")
-#endif
+        }
     }
     
     // MARK: - Exam Logic

@@ -11,6 +11,17 @@ TEAM_ID    = "U8B97NVD7G"
 OUTPUT_DIR = "./build"
 
 platform :ios do
+  
+  # Load App Store Connect API Key
+  def api_key
+    app_store_connect_api_key(
+      key_id: "DB4BA7U46W",
+      issuer_id: "8fd70bd2-5f11-4c32-a495-143caca99b44",
+      key_filepath: "private_keys/AuthKey_DB4BA7U46W.p8",
+      duration: 1200, # optional (seconds)
+      in_house: false # optional but recommended for non-enterprise accounts
+    )
+  end
 
   # ── Build ──────────────────────────────────────────
 
@@ -105,8 +116,12 @@ platform :ios do
       xcargs: "CURRENT_PROJECT_VERSION=#{build_number}"
     )
 
+    changelog = File.read("fastlane/release_notes.txt") rescue "Internal testing build."
+
     upload_to_testflight(
-      skip_waiting_for_build_processing: true
+      api_key: api_key,
+      skip_waiting_for_build_processing: true,
+      changelog: changelog
     )
 
     UI.success("🚀 Uploaded to TestFlight (build #{build_number})")
@@ -131,6 +146,7 @@ platform :ios do
     )
 
     upload_to_app_store(
+      api_key: api_key,
       force: true,
       skip_screenshots: true,
       skip_metadata: true
@@ -140,6 +156,16 @@ platform :ios do
   end
 
   # ── Convenience ────────────────────────────────────
+
+  desc "Upload existing IPA to TestFlight"
+  lane :upload_only do |options|
+    ipa_path = options[:ipa] || "#{OUTPUT_DIR}/RapidDent.ipa"
+    upload_to_testflight(
+      api_key: api_key,
+      ipa: ipa_path,
+      skip_waiting_for_build_processing: true
+    )
+  end
 
   desc "Clean derived data"
   lane :clean do

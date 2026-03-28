@@ -1,0 +1,135 @@
+[22:57:00]: [32m------------------------------[0m
+[22:57:00]: [32m--- Step: default_platform ---[0m
+[22:57:00]: [32m------------------------------[0m
+[22:57:00]: [32mDriving the lane 'ios upload_only' 🚀[0m
+[22:57:00]: [32m---------------------------------------[0m
+[22:57:00]: [32m--- Step: app_store_connect_api_key ---[0m
+[22:57:00]: [32m---------------------------------------[0m
+[22:57:00]: [32m----------------------------------[0m
+[22:57:00]: [32m--- Step: upload_to_testflight ---[0m
+[22:57:00]: [32m----------------------------------[0m
+[22:57:00]: Creating authorization token for App Store Connect API
+[22:57:00]: [32mReady to upload new build to TestFlight (App: 6757778396)...[0m
+[22:57:00]: Going to upload updated app to App Store Connect
+[22:57:00]: [32mThis might take a few minutes. Please don't interrupt the script.[0m
+[22:57:46]: [33m[altool] Running altool at path '/Applications/Xcode.app/Contents/SharedFrameworks/ContentDelivery.framework/Resources/altool'...
+[0m
+[22:57:46]: [33m[altool] 
+[0m
+[22:57:46]: [33m[altool] 2026-03-27 22:57:46.350 [1m[31mERROR: [ContentDelivery.Uploader.102AE6F50] 
+[0m
+[22:57:46]: [33m[altool] =======================================
+[0m
+[22:57:46]: [33m[altool] UPLOAD FAILED with 2 errors
+[0m
+[22:57:46]: [33m[altool] =======================================[0m
+[0m
+[22:57:46]: [33m[altool] Failed to upload package.
+[0m
+[22:57:46]: [33m[altool] 2026-03-27 22:57:46.351 [1m[31mERROR: [altool.102AE6F50] Validation failed (409) Invalid Pre-Release Train. The train version '2' is closed for new build submissions (ID: 57828d09-44c4-4cc7-bf4e-7d724bacd511)
+[0m
+[22:57:46]: [33m[altool]    NSUnderlyingError : Validation failed (-19241) Invalid Pre-Release Train. The train version '2' is closed for new build submissions
+[0m
+[22:57:46]: [33m[altool]       status : 409
+[0m
+[22:57:46]: [33m[altool]       detail : Invalid Pre-Release Train. The train version '2' is closed for new build submissions
+[0m
+[22:57:46]: [33m[altool]       id : 57828d09-44c4-4cc7-bf4e-7d724bacd511
+[0m
+[22:57:46]: [33m[altool]       code : STATE_ERROR.VALIDATION_ERROR
+[0m
+[22:57:46]: [33m[altool]       title : Validation failed
+[0m
+[22:57:46]: [33m[altool]    iris-code : STATE_ERROR.VALIDATION_ERROR
+[0m
+[22:57:46]: [33m[altool] Validation failed (409) This bundle is invalid. The value for key CFBundleShortVersionString [2] in the Info.plist file must contain a higher version than that of the previously approved version [2]. Please find more information about CFBundleShortVersionString at https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleshortversionstring (ID: 4a28d286-6fba-4a7a-9e90-3ccf8ff7a4ec)
+[0m
+[22:57:46]: [33m[altool]    NSUnderlyingError : Validation failed (-19241) This bundle is invalid. The value for key CFBundleShortVersionString [2] in the Info.plist file must contain a higher version than that of the previously approved version [2]. Please find more information about CFBundleShortVersionString at https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleshortversionstring
+[0m
+[22:57:46]: [33m[altool]       status : 409
+[0m
+[22:57:46]: [33m[altool]       detail : This bundle is invalid. The value for key CFBundleShortVersionString [2] in the Info.plist file must contain a higher version than that of the previously approved version [2]. Please find more information about CFBundleShortVersionString at https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleshortversionstring
+[0m
+[22:57:46]: [33m[altool]       id : 4a28d286-6fba-4a7a-9e90-3ccf8ff7a4ec
+[0m
+[22:57:46]: [33m[altool]       code : STATE_ERROR.VALIDATION_ERROR
+[0m
+[22:57:46]: [33m[altool]       title : Validation failed
+[0m
+[22:57:46]: [33m[altool]    iris-code : STATE_ERROR.VALIDATION_ERROR
+[0m
+[22:57:46]: [33m[altool] [0m
+[0m
+[22:57:46]: Application Loader output above ^
+[22:57:46]: [31m[ContentDelivery.Uploader.102AE6F50] [0m
+[22:57:46]: [31m[altool.102AE6F50] Validation failed (409) Invalid Pre-Release Train. The train version '2' is closed for new build submissions (ID: 57828d09-44c4-4cc7-bf4e-7d724bacd511)[0m
+[22:57:46]: [31mCould not download/upload from App Store Connect![0m
++------------------------------------+
+|            [33mLane Context[0m            |
++------------------+-----------------+
+| DEFAULT_PLATFORM | ios             |
+| PLATFORM_NAME    | ios             |
+| LANE_NAME        | ios upload_only |
++------------------+-----------------+
+[22:57:46]: [31mCalled from Fastfile at line 160[0m
+[22:57:46]: [31m```[0m
+[22:57:46]: [31m    158:	  lane :upload_only do |options|[0m
+[22:57:46]: [31m    159:	    ipa_path = options[:ipa] || "#{OUTPUT_DIR}/RapidDent.ipa"[0m
+[22:57:46]: [31m => 160:	    upload_to_testflight([0m
+[22:57:46]: [31m    161:	      api_key: api_key,[0m
+[22:57:46]: [31m    162:	      ipa: ipa_path,[0m
+[22:57:46]: [31m```[0m
+[22:57:46]: [31mError uploading ipa file: 
+ [Application Loader Error Output]: [ContentDelivery.Uploader.102AE6F50] 
+[Application Loader Error Output]: [altool.102AE6F50] Validation failed (409) Invalid Pre-Release Train. The train version '2' is closed for new build submissions (ID: 57828d09-44c4-4cc7-bf4e-7d724bacd511)[0m
+
++---------------------------------------------+
+|              [32mfastlane summary[0m               |
++------+------------------------+-------------+
+| Step | Action                 | Time (in s) |
++------+------------------------+-------------+
+| 1    | default_platform       | 0           |
+| 2    | app_store_connect_api  | 0           |
+|      | _key                   |             |
+| 💥   | [31mupload_to_testflight[0m   | 46          |
++------+------------------------+-------------+
+
+[22:57:46]: [31mfastlane finished with errors[0m
+[31m
+[!] Error uploading ipa file: 
+ [Application Loader Error Output]: [ContentDelivery.Uploader.102AE6F50] 
+[Application Loader Error Output]: [altool.102AE6F50] Validation failed (409) Invalid Pre-Release Train. The train version '2' is closed for new build submissions (ID: 57828d09-44c4-4cc7-bf4e-7d724bacd511)[0m
+
+#######################################################################
+# fastlane 2.232.2 is available. You are on 2.230.0.
+# You should use the latest version.
+# Please update using `bundle update fastlane`.
+#######################################################################
+
+[32m2.232.2 Improvements[0m
+* [sigh] fix: prevent empty string as input to codesign on VERBOSE (#29910) via Connor Tumbleson (@iBotPeaches)
+* Fix console command compatibility with Ruby 3.3+ (#29925) via Jerome Lacoste (@lacostej)
+* cli: do not hide the original exception when failing in our ensure block (#29923) via Jerome Lacoste (@lacostej)
+* [core] Fix gemspec bin/console exclusion to subtract "console" not "bin/console" (#29914) via Tachibana waita (@whywaita)
+* [core] Upgrade rack transitive dep to please dependabot (#29911) via Jerome Lacoste (@lacostej)
+* build: move to faraday 1.10.5 (#29906) via Connor Tumbleson (@iBotPeaches)
+
+[32m2.232.1 Improvements[0m
+* [action] Revert to "-uploadedDate" sort order for app_store_build_num… (#29899) via Kai Leonhardt (@Mik4sa)
+
+[32m2.232.0 Improvements[0m
+* Revert "[pilot] Add Support of the BuildAudienceType Field (#29859)" (#29881) via Connor Tumbleson (@iBotPeaches)
+* [match] Download Apple's new Developer ID intermediate certificates (#29890) via Ian G. Maia (@iangmaia)
+* [match] Bump minimum version of `aws-sdk-s3` dependency to `~> 1.197` (#29750) via Olivier Halligon (@AliSoftware)
+* [action] Switch to "build uploads" api for app_store_build_number and latest_testflight_build_number action (#29879) via Kai Leonhardt (@Mik4sa)
+* [appium] Fix appium driver usage (#29882) via Naveed Ahmad (@naveed-ahmad)
+* [gym, scan, snapshot] Allow disabling swift packages fetches when using xcodebuild (#29862) via Alexandre Podlewski (@alexandre-pod)
+* [ci] build: move to m4 runners (#29802) via Connor Tumbleson (@iBotPeaches)
+* [Ruby] Ruby 2.7 is now the minimum (dropping Ruby 2.6) (#29779) via Connor Tumbleson (@iBotPeaches)
+* [ci] Fix CI pipeline to actually lint shell/bash scripts. (#29757) via Connor Tumbleson (@iBotPeaches)
+* [action] Add format switch to the import_certificate action (#29868) via Kai Leonhardt (@Mik4sa)
+* [pilot] Add Support of the BuildAudienceType Field (#29859) via YuantongLu (@YuantongL)
+
+[32mTo see all new releases, open https://github.com/fastlane/fastlane/releases[0m
+
+[32mPlease update using `bundle update fastlane`[0m

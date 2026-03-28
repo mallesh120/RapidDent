@@ -7,9 +7,6 @@
 
 import SwiftUI
 import os
-#if canImport(FirebaseFirestore)
-import FirebaseFirestore
-#endif
 
 struct ScenarioRunnerView: View {
     @State private var scenario: Scenario?
@@ -33,10 +30,6 @@ struct ScenarioRunnerView: View {
     private var isLastQuestionAnswered: Bool {
         !questions.isEmpty && answeredQuestions.contains(questions.count - 1)
     }
-    
-#if canImport(FirebaseFirestore)
-    private let db = Firestore.firestore()
-#endif
     
     var body: some View {
         ZStack {
@@ -619,87 +612,31 @@ struct ScenarioRunnerView: View {
     // MARK: - Data Fetching
     
     private func fetchScenario() {
-#if canImport(FirebaseFirestore)
         isLoading = true
         errorMessage = nil
         
-        // Fetch a random scenario
-        db.collection("scenarios")
-            .getDocuments { snapshot, error in
-                if let error = error {
-                    isLoading = false
-                    errorMessage = "Failed to load scenario: \(error.localizedDescription)"
-                    AppLogger.data.error("Error fetching scenarios: \(error.localizedDescription)")
-                    return
-                }
+        QuestionService.shared.fetchRandomScenario(excluding: seenScenarioIDs) { result in
+            DispatchQueue.main.async {
+                self.isLoading = false
                 
-                guard let documents = snapshot?.documents, !documents.isEmpty else {
-                    isLoading = false
-                    errorMessage = "No scenarios found in database"
-                    AppLogger.data.warning("No scenario documents found")
-                    return
-                }
-                
-                // Filter out already-seen scenarios
-                var unseen = documents.filter { !self.seenScenarioIDs.contains($0.documentID) }
-                
-                // If all have been seen, reset and allow all again
-                if unseen.isEmpty {
-                    self.seenScenarioIDs.removeAll()
-                    unseen = documents
-                    AppLogger.data.info("All scenarios seen – resetting cycle")
-                }
-                
-                // Pick a random unseen scenario
-                let randomDocument = unseen.randomElement()!
-                
-                if let fetchedScenario = Scenario(document: randomDocument) {
-                    self.seenScenarioIDs.insert(fetchedScenario.id)
-                    self.scenario = fetchedScenario
-                    AppLogger.data.info("Loaded scenario: \(fetchedScenario.id) (seen \(self.seenScenarioIDs.count)/\(documents.count))")
+                switch result {
+                case .success(let (scenario, questions)):
+                    self.seenScenarioIDs.insert(scenario.id)
+                    self.scenario = scenario
+                    self.questions = questions
                     
-                    // Fetch linked questions
-                    fetchQuestions(for: fetchedScenario.id)
-                } else {
-                    isLoading = false
-                    errorMessage = "Failed to parse scenario"
+                    if questions.isEmpty {
+                        AppLogger.data.warning("No questions parsed for scenario: \(scenario.id)")
+                    } else {
+                        AppLogger.data.info("Loaded \(questions.count) scenario questions")
+                    }
+                    
+                case .failure(let error):
+                    self.errorMessage = "Failed to load scenario: \(error.localizedDescription)"
+                    AppLogger.data.error("Error fetching scenarios: \(error.localizedDescription)")
                 }
             }
-#else
-        isLoading = false
-        errorMessage = "Firebase is not configured"
-#endif
-    }
-    
-    private func fetchQuestions(for scenarioId: String) {
-#if canImport(FirebaseFirestore)
-        db.collection("questions")
-            .whereField("scenario_id", isEqualTo: scenarioId)
-            .getDocuments { snapshot, error in
-                isLoading = false
-                
-                if let error = error {
-                    errorMessage = "Failed to load questions: \(error.localizedDescription)"
-                    AppLogger.data.error("Error fetching scenario questions: \(error.localizedDescription)")
-                    return
-                }
-                
-                guard let documents = snapshot?.documents else {
-                    errorMessage = "No questions found for this scenario"
-                    AppLogger.data.warning("No question documents for scenario")
-                    return
-                }
-                
-                let fetchedQuestions = documents.compactMap { Question(document: $0) }
-                
-                if fetchedQuestions.isEmpty {
-                    AppLogger.data.warning("No questions parsed for scenario: \(scenarioId)")
-                } else {
-                    questions = fetchedQuestions
-                    AppLogger.data.info("Loaded \(fetchedQuestions.count) scenario questions")
-                }
-            }
-#endif
+        }
     }
     
     // MARK: - Game Logic

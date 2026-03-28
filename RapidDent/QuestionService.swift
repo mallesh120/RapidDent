@@ -80,7 +80,8 @@ final class QuestionService {
     // MARK: - Scenario
 
     /// Fetches a random scenario and its linked questions.
-    func fetchRandomScenario(completion: @escaping (Result<(Scenario, [Question]), Error>) -> Void) {
+    /// - Parameter seenIDs: Scenarios to exclude, to ensure variety.
+    func fetchRandomScenario(excluding seenIDs: Set<String> = [], completion: @escaping (Result<(Scenario, [Question]), Error>) -> Void) {
 #if canImport(FirebaseFirestore)
         db.collection("scenarios")
             .getDocuments { [weak self] snapshot, error in
@@ -97,8 +98,17 @@ final class QuestionService {
                     completion(.failure(ServiceError.noData))
                     return
                 }
+                
+                // Filter out already seen scenarios
+                var unseen = documents.filter { !seenIDs.contains($0.documentID) }
+                
+                // If all have been seen, reset the pool (allow all)
+                if unseen.isEmpty {
+                    unseen = documents
+                    AppLogger.data.info("All scenarios seen. Resetting pool.")
+                }
 
-                guard let randomDoc = documents.randomElement(),
+                guard let randomDoc = unseen.randomElement(),
                       let scenario = Scenario(document: randomDoc) else {
                     completion(.failure(ServiceError.parseFailed))
                     return

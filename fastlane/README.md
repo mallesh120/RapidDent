@@ -71,6 +71,14 @@ Build & upload to TestFlight
 
 Build & submit to App Store for review
 
+### ios upload_only
+
+```sh
+[bundle exec] fastlane ios upload_only
+```
+
+Upload existing IPA to TestFlight
+
 ### ios clean
 
 ```sh

@@ -7,9 +7,6 @@
 
 import SwiftUI
 import os
-#if canImport(FirebaseFirestore)
-import FirebaseFirestore
-#endif
 
 struct ContentView: View {
     var reviewMode: Bool = false
@@ -23,10 +20,6 @@ struct ContentView: View {
     @State private var activeExplanation: Question?
     @State private var feedbackIsCorrect = false
     @State private var showFeedback = false
-    
-#if canImport(FirebaseFirestore)
-    private let db = Firestore.firestore()
-#endif
     
     var body: some View {
         ZStack {
@@ -349,65 +342,50 @@ struct ContentView: View {
     // MARK: - Data Fetching
     
     private func fetchQuestions() {
-#if canImport(FirebaseFirestore)
         isLoading = true
         errorMessage = nil
         
-        db.collection("questions")
-            .whereField("type", isEqualTo: "RAPID_FIRE")
-            .getDocuments { snapshot, error in
-                isLoading = false
+        QuestionService.shared.fetchRapidFireQuestions { result in
+            DispatchQueue.main.async {
+                self.isLoading = false
                 
-                if let error = error {
-                    errorMessage = "Failed to load questions: \(error.localizedDescription)"
-                    AppLogger.data.error("Error fetching questions: \(error.localizedDescription)")
-                    return
-                }
-                
-                guard let documents = snapshot?.documents else {
-                    errorMessage = "No questions found in database"
-                    AppLogger.data.warning("No documents found")
-                    return
-                }
-                
-                let fetchedQuestions = documents.compactMap { Question(document: $0) }
-                
-                if fetchedQuestions.isEmpty {
-                    errorMessage = "No RAPID_FIRE questions available"
-                    AppLogger.data.warning("No RAPID_FIRE questions found")
-                } else {
-                    if reviewMode {
-                        // Review Mode: Show ONLY questions that were answered incorrectly
-                        let reviewQuestions = fetchedQuestions.filter { progressManager.wrongIDs.contains($0.id) }
-                        
-                        if reviewQuestions.isEmpty {
-                            errorMessage = "No questions need review. Great job! 🎉"
-                            AppLogger.data.info("No questions to review")
-                        } else {
-                            questions = reviewQuestions.shuffled()
-                            AppLogger.data.info("Review Mode: Loaded \(reviewQuestions.count) questions")
-                        }
+                switch result {
+                case .success(let fetchedQuestions):
+                    if fetchedQuestions.isEmpty {
+                        self.errorMessage = "No RAPID_FIRE questions available"
+                        AppLogger.data.warning("No RAPID_FIRE questions found")
                     } else {
-                        // Normal Mode: Filter out already completed questions
-                        let uncompletedQuestions = fetchedQuestions.filter { !progressManager.completedIDs.contains($0.id) }
-                        
-                        if uncompletedQuestions.isEmpty {
-                            // All questions completed, reset to show all questions
-                            questions = fetchedQuestions.shuffled()
-                            AppLogger.data.info("All completed! Showing all \(fetchedQuestions.count) questions")
+                        if self.reviewMode {
+                            // Review Mode: Show ONLY questions that were answered incorrectly
+                            let reviewQuestions = fetchedQuestions.filter { self.progressManager.wrongIDs.contains($0.id) }
+                            
+                            if reviewQuestions.isEmpty {
+                                self.errorMessage = "No questions need review. Great job! 🎉"
+                                AppLogger.data.info("No questions to review")
+                            } else {
+                                self.questions = reviewQuestions.shuffled()
+                                AppLogger.data.info("Review Mode: Loaded \(reviewQuestions.count) questions")
+                            }
                         } else {
-                            questions = uncompletedQuestions.shuffled()
-                            AppLogger.data.info("Loaded \(uncompletedQuestions.count) uncompleted of \(fetchedQuestions.count) total")
+                            // Normal Mode: Filter out already completed questions
+                            let uncompletedQuestions = fetchedQuestions.filter { !self.progressManager.completedIDs.contains($0.id) }
+                            
+                            if uncompletedQuestions.isEmpty {
+                                // All questions completed, reset to show all questions
+                                self.questions = fetchedQuestions.shuffled()
+                                AppLogger.data.info("All completed! Showing all \(fetchedQuestions.count) questions")
+                            } else {
+                                self.questions = uncompletedQuestions.shuffled()
+                                AppLogger.data.info("Loaded \(uncompletedQuestions.count) uncompleted of \(fetchedQuestions.count) total")
+                            }
                         }
                     }
+                case .failure(let error):
+                    self.errorMessage = "Failed to load questions: \(error.localizedDescription)"
+                    AppLogger.data.error("Error fetching questions: \(error.localizedDescription)")
                 }
             }
-#else
-        // Fallback when FirebaseFirestore isn't available
-        isLoading = false
-        errorMessage = "Firebase is not configured. Please ensure Firebase is properly set up."
-        AppLogger.data.warning("Firebase not available")
-#endif
+        }
     }
     
     // MARK: - Game Logic
